@@ -15,6 +15,7 @@ void SceneManager::addScene(const std::string &name, std::shared_ptr<Scene> scen
     if (_scenes.find(name) != _scenes.end())
         throw std::runtime_error("Scene already exists");
     _scenes[name] = scene;
+    _scenes[name]->init();
 }
 
 void SceneManager::removeScene(const std::string &name)
@@ -32,9 +33,9 @@ void SceneManager::changeScene(const std::string &name)
     _currentScene.second = name;
 }
 
-void SceneManager::update()
+void SceneManager::update(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
 {
-    _currentScene.first->update();
+    _currentScene.first->update(window, scene);
 }
 
 void SceneManager::draw(std::shared_ptr<sf::RenderWindow> &window)
