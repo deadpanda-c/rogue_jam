@@ -15,7 +15,7 @@ void MenuScene::update()
     std::cout << "Menu is updating" << std::endl;
 }
 
-void MenuScene::draw()
+void MenuScene::draw(std::shared_ptr<sf::RenderWindow> &window)
 {
     std::cout << "Menu is drawing" << std::endl;
 }

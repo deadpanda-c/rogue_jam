@@ -4,10 +4,10 @@
 class MenuScene : public Scene {
     public:
         MenuScene();
-        virtual ~MenuScene();
+        ~MenuScene();
 
-        virtual void init();
-        virtual void update();
-        virtual void draw();
+        void init();
+        void update();
+        void draw(std::shared_ptr<sf::RenderWindow> &window);
     private:
 };

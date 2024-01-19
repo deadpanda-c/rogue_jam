@@ -37,9 +37,9 @@ void SceneManager::update()
     _currentScene.first->update();
 }
 
-void SceneManager::draw()
+void SceneManager::draw(std::shared_ptr<sf::RenderWindow> &window)
 {
-    _currentScene.first->draw();
+    _currentScene.first->draw(window);
 }
 
 std::string SceneManager::getCurrentSceneName() const
