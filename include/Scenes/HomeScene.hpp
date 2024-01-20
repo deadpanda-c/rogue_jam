@@ -7,6 +7,8 @@
 
 #define HOME_MAP "../assets/img/home.png"
 
+#define FONT_TEXT  "../assets/fonts/PERRYGOT.TTF"
+
 class HomeScene : public Scene {
     public:
         HomeScene();

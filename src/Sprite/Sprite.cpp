@@ -2,7 +2,6 @@
 
 Sprite::Sprite()
 {
-    std::cout << "[*] Sprite ctor" << std::endl;
     _path = "";
 }
 
@@ -59,7 +58,7 @@ void Sprite::setPosition(const sf::Vector2f &position)
 void Sprite::draw(std::shared_ptr<sf::RenderWindow> window)
 {
     if (_path.size() == 0) {
-        std::cout << "[*] Sprite::draw() - Drawing rectangle" << std::endl;
+//        std::cout << "[*] Sprite::draw() - Drawing rectangle" << std::endl;
         window->draw(_rect);
         return;
     }
