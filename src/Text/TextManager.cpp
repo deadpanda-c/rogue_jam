@@ -34,3 +34,10 @@ void TextManager::draw(std::shared_ptr<sf::RenderWindow> &window, const std::str
         throw std::runtime_error("TextManager::draw: Text doesn't exist");
     _texts[name]->draw(window);
 }
+
+void TextManager::setString(const std::string &name, const std::string &new_string, const std::string &font_path)
+{
+    if (_texts.find(name) == _texts.end())
+        return addText(name, new_string, font_path);
+    _texts[name]->getText().setString(new_string);
+}

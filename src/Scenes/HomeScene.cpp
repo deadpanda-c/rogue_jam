@@ -16,6 +16,7 @@ std::string convertIntToString(unsigned int  number)
 
 void HomeScene::init()
 {
+    _currentSold = 1000;
     _currentIndex = 0;
     std::cout << "[*] Home is init" << std::endl;
     // create the background
@@ -94,7 +95,7 @@ void HomeScene::init()
     _dungeonTextManager.addText("dungeonName_dragon-ball", "Dragon Ball", FONT_TEXT);
     _dungeonTextManager.addText("dungeonName_bleach", "Bleach", FONT_TEXT);
     _dungeonTextManager.addText("shopTitle", "Shop", FONT_TEXT);
-    _dungeonTextManager.addText("current_sold", convertIntToString(1000) + " {E}", ARIAL_FONT);
+    _dungeonTextManager.addText("current_sold", convertIntToString(_currentSold) + " {E}", ARIAL_FONT);
     _dungeonTextManager.addText("buyCellOne", "Buy", FONT_TEXT);
     _dungeonTextManager.addText("buyCellTwo", "Buy", FONT_TEXT);
 
@@ -155,6 +156,30 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
                 _currentIndex += (_currentIndex < 3) ? 1 : -3;
             else if (event.key.code == sf::Keyboard::Left)
                 _currentIndex -= (_currentIndex > 0) ? 1 : -3;
+        }
+        // check mouse event
+        if (event.type == sf::Event::MouseButtonPressed) {
+            if (event.mouseButton.button == sf::Mouse::Left) {
+                if (_spriteManager.getSprite("buyItemOne")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+                    if (_currentSold >= 50) {
+                        _currentSold -= 50;
+                        _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
+                        std::cout << "buy item one" << std::endl;
+                    } else {
+                        std::cout << "not enough money" << std::endl;
+                    }
+                    _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
+                } else if (_spriteManager.getSprite("buyItemTwo")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+                    if (_currentSold >= 100) {
+                        _currentSold -= 100;
+                        _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
+                        std::cout << "buy item two" << std::endl;
+                    } else {
+                        std::cout << "not enough money" << std::endl;
+                    }
+                    _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
+                }
+            }
         }
     }
 }

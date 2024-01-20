@@ -25,6 +25,7 @@ class HomeScene : public Scene {
         void draw(std::shared_ptr<sf::RenderWindow> &window);
         void handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene);
     private:
+        unsigned int _currentSold;
         SpriteManager _spriteManager;
         TextManager _entranceTextManager;
         TextManager _dungeonTextManager;
