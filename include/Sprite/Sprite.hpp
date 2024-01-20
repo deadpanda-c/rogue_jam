@@ -22,6 +22,7 @@ class Sprite {
 
         sf::Vector2f getPosition() const;
         sf::Vector2f getScale() const;
+        sf::FloatRect getGlobalBounds() const;
     private:
         std::string _path;
         sf::RectangleShape _rect;

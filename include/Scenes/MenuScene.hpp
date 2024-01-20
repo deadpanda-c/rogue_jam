@@ -16,4 +16,5 @@ class MenuScene : public Scene {
         void handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene);
     private:
         SpriteManager _spriteManager;
+        bool _isHoverPlayBtn;
 };

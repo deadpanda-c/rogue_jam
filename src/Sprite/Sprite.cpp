@@ -75,3 +75,8 @@ sf::Vector2f Sprite::getPosition() const
 {
     return _sprite.getPosition();
 }
+
+sf::FloatRect Sprite::getGlobalBounds() const
+{
+    return _sprite.getGlobalBounds();
+}
