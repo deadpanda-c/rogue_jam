@@ -17,6 +17,11 @@ void HomeScene::init()
     _spriteManager.addSprite("entrance_dragon-ball", "");
     _spriteManager.addSprite("entrance_bleach", "");
 
+    _spriteManager.addSprite("highScore_onepiece", "");
+    _spriteManager.addSprite("highScore_assassination-classroom", "");
+    _spriteManager.addSprite("highScore_dragon-ball", "");
+    _spriteManager.addSprite("highScore_bleach", "");
+
     _spriteManager.getSprite("entrance_onepiece")->setScale((sf::Vector2f){0.5, 0.5});
     _spriteManager.getSprite("entrance_onepiece")->setPosition((sf::Vector2f){300, 140});
 
@@ -29,6 +34,18 @@ void HomeScene::init()
     _spriteManager.getSprite("entrance_bleach")->setScale((sf::Vector2f){0.5, 0.5});
     _spriteManager.getSprite("entrance_bleach")->setPosition((sf::Vector2f){1300, 580});
 
+    _spriteManager.getSprite("highScore_onepiece")->setScale((sf::Vector2f){2, 2});
+    _spriteManager.getSprite("highScore_onepiece")->setPosition((sf::Vector2f){1550, 200});
+
+    _spriteManager.getSprite("highScore_assassination-classroom")->setScale((sf::Vector2f){2, 2});
+    _spriteManager.getSprite("highScore_assassination-classroom")->setPosition((sf::Vector2f){1550, 200});
+
+    _spriteManager.getSprite("highScore_dragon-ball")->setScale((sf::Vector2f){2, 2});
+    _spriteManager.getSprite("highScore_dragon-ball")->setPosition((sf::Vector2f){1550, 200});
+
+    _spriteManager.getSprite("highScore_bleach")->setScale((sf::Vector2f){2, 2});
+    _spriteManager.getSprite("highScore_bleach")->setPosition((sf::Vector2f){1550, 200});
+
     _entranceTextManager.addText("entrance_onepiece", "One Piece", FONT_TEXT);
     _entranceTextManager.addText("entrance_assassination-classroom", "Assassination Classroom", FONT_TEXT);
     _entranceTextManager.addText("entrance_dragon-ball", "Dragon Ball", FONT_TEXT);
@@ -38,6 +55,7 @@ void HomeScene::init()
     _dungeonTextManager.addText("dungeonName_assassination-classroom", "Assassination Classroom", FONT_TEXT);
     _dungeonTextManager.addText("dungeonName_dragon-ball", "Dragon Ball", FONT_TEXT);
     _dungeonTextManager.addText("dungeonName_bleach", "Bleach", FONT_TEXT);
+
     for (auto &text : _entranceTextManager.getTexts()) {
         text.second->setCharacterSize(20);
         text.second->setFillColor(sf::Color::White);
@@ -123,6 +141,11 @@ void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
     _spriteManager.draw(window, "entrance_assassination-classroom");
     _spriteManager.draw(window, "entrance_dragon-ball");
     _spriteManager.draw(window, "entrance_bleach");
+    _spriteManager.draw(window,
+            (_currentIndex == 0) ? "highScore_onepiece" :
+            (_currentIndex == 1) ? "highScore_assassination-classroom" :
+            (_currentIndex == 2) ? "highScore_dragon-ball" :
+            "highScore_bleach");
 
     _entranceTextManager.draw(window, "entrance_onepiece");
     _entranceTextManager.draw(window, "entrance_assassination-classroom");
@@ -134,7 +157,6 @@ void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
             (_currentIndex == 1) ? "dungeonName_assassination-classroom" :
             (_currentIndex == 2) ? "dungeonName_dragon-ball" :
             "dungeonName_bleach");
-
 }
 
 HomeScene::~HomeScene()
