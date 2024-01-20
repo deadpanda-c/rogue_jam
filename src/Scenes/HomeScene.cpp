@@ -34,20 +34,15 @@ void HomeScene::init()
     _entranceTextManager.addText("entrance_dragon-ball", "Dragon Ball", FONT_TEXT);
     _entranceTextManager.addText("entrance_bleach", "Bleach", FONT_TEXT);
 
-
     _dungeonTextManager.addText("dungeonName_onepiece", "One Piece", FONT_TEXT);
-    _dungeonTextManager.addText("dungeon_assassination-classroom", "Assassination Classroom", FONT_TEXT);
-    _dungeonTextManager.addText("dungeon_dragon-ball", "Dragon Ball", FONT_TEXT);
-    _dungeonTextManager.addText("dungeon_bleach", "Bleach", FONT_TEXT);
+    _dungeonTextManager.addText("dungeonName_assassination-classroom", "Assassination Classroom", FONT_TEXT);
+    _dungeonTextManager.addText("dungeonName_dragon-ball", "Dragon Ball", FONT_TEXT);
+    _dungeonTextManager.addText("dungeonName_bleach", "Bleach", FONT_TEXT);
     for (auto &text : _entranceTextManager.getTexts()) {
         text.second->setCharacterSize(20);
         text.second->setFillColor(sf::Color::White);
     }
 
-    for (auto &text : _dungeonTextManager.getTexts()) {
-        text.second->setCharacterSize(50);
-        text.second->setFillColor(sf::Color::White);
-    }
 
     sf::Vector2f currentPosOnePiece = _spriteManager.getSprite("entrance_onepiece")->getPosition();
     sf::Vector2f currentPosAssassinationClassroom = _spriteManager.getSprite("entrance_assassination-classroom")->getPosition();
@@ -58,6 +53,19 @@ void HomeScene::init()
     _entranceTextManager.getText("entrance_assassination-classroom")->setPosition((sf::Vector2f){currentPosAssassinationClassroom.x - 80, currentPosAssassinationClassroom.y - 50});
     _entranceTextManager.getText("entrance_dragon-ball")->setPosition((sf::Vector2f){currentPosKurokoNoBasket.x - 40, currentPosKurokoNoBasket.y - 50});
     _entranceTextManager.getText("entrance_bleach")->setPosition((sf::Vector2f){currentPosBleach.x - 20, currentPosBleach.y - 50});
+
+    _dungeonTextManager.getText("dungeonName_onepiece")->setCharacterSize(50);
+    _dungeonTextManager.getText("dungeonName_onepiece")->setPosition((sf::Vector2f){1500, 100});
+
+    _dungeonTextManager.getText("dungeonName_assassination-classroom")->setCharacterSize(30);
+    _dungeonTextManager.getText("dungeonName_assassination-classroom")->setPosition((sf::Vector2f){1400, 100});
+
+    _dungeonTextManager.getText("dungeonName_dragon-ball")->setCharacterSize(40);
+    _dungeonTextManager.getText("dungeonName_dragon-ball")->setPosition((sf::Vector2f){1500, 100});
+
+    _dungeonTextManager.getText("dungeonName_bleach")->setCharacterSize(60);
+    _dungeonTextManager.getText("dungeonName_bleach")->setPosition((sf::Vector2f){1500, 100});
+
 }
 
 void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
@@ -120,6 +128,12 @@ void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
     _entranceTextManager.draw(window, "entrance_assassination-classroom");
     _entranceTextManager.draw(window, "entrance_dragon-ball");
     _entranceTextManager.draw(window, "entrance_bleach");
+
+    _dungeonTextManager.draw(window,
+            (_currentIndex == 0) ? "dungeonName_onepiece" :
+            (_currentIndex == 1) ? "dungeonName_assassination-classroom" :
+            (_currentIndex == 2) ? "dungeonName_dragon-ball" :
+            "dungeonName_bleach");
 
 }
 
