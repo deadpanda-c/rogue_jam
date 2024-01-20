@@ -19,6 +19,7 @@ class SpriteManager {
         void removeSprite(const std::string &name);
 
         void draw(std::shared_ptr<sf::RenderWindow> &window);
+        void draw(std::shared_ptr<sf::RenderWindow> &window, const std::string &name);
         size_t getNbSprites() const;
         std::shared_ptr<Sprite> getSprite(const std::string &name) const;
     private:
