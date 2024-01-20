@@ -8,6 +8,9 @@ HomeScene::HomeScene()
 void HomeScene::init()
 {
     std::cout << "[*] Home is init" << std::endl;
+    _spriteManager.addSprite("home_map", HOME_MAP);
+    _spriteManager.getSprite("home_map")->setScale((sf::Vector2f){2, 2});
+    _spriteManager.getSprite("home_map")->setPosition((sf::Vector2f){800, 100});
 }
 
 void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
@@ -22,12 +25,13 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
 
 void HomeScene::update(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
 {
-    window->clear(sf::Color::Red);
+    window->clear();
     handleEvent(window, scene);
 }
 
 void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
 {
+    _spriteManager.draw(window, "home_map");
 }
 
 HomeScene::~HomeScene()

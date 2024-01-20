@@ -8,7 +8,7 @@
 
 #include "Scenes/SceneManager.hpp"
 #include "Scenes/MenuScene.hpp"
-#include "Scenes/GameScene.hpp"
+#include "Scenes/HomeScene.hpp"
 
 static const int WINDOW_WIDTH = 1920;
 static const int WINDOW_HEIGHT = 1080;
@@ -22,7 +22,7 @@ int main(void)
     SceneManager sceneManager;
     std::string currentScene = "menu";
     sceneManager.addScene("menu", std::make_shared<MenuScene>());
-    sceneManager.addScene("game", std::make_shared<GameScene>());
+    sceneManager.addScene("game", std::make_shared<HomeScene>());
 
     sceneManager.changeScene("menu");
     while (window->isOpen()) {
