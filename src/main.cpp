@@ -17,16 +17,17 @@ int main(void)
 {
     std::shared_ptr<sf::RenderWindow> window = std::make_shared<sf::RenderWindow>(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Dungeon Odyssey");
     window->setFramerateLimit(60);
-    std::string currentScene = "menu";
 
+    // scene management
     SceneManager sceneManager;
-
+    std::string currentScene = "menu";
     sceneManager.addScene("menu", std::make_shared<MenuScene>());
     sceneManager.addScene("game", std::make_shared<GameScene>());
 
     sceneManager.changeScene("menu");
     while (window->isOpen()) {
 
+        // transition between scenes
         if (currentScene != sceneManager.getCurrentSceneName()) {
             sceneManager.changeScene(currentScene);
             std::cout << "Scene changed to " << currentScene << std::endl;

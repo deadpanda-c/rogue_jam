@@ -16,7 +16,9 @@ void SpriteManager::addSprite(const std::string &name, const std::string &path)
         std::cout << "SpriteManager::addSprite: Sprite " << name << " already exists" << std::endl;
         return;
     }
+    std::cout << "SpriteManager::addSprite: Sprite " << name << " added" << std::endl;
     _sprites[name] = std::make_shared<Sprite>();
+    std::cout << "SpriteManager::addSprite: Sprite " << name << " initialized" << std::endl;
     _sprites[name]->init(path, (sf::Vector2f){0, 0}, (sf::Vector2f){0, 0});
 }
 
@@ -32,6 +34,7 @@ void SpriteManager::removeSprite(const std::string &name)
 void SpriteManager::draw(std::shared_ptr<sf::RenderWindow> &window)
 {
     for (auto &sprite : _sprites) {
+        std::cout << "[*] SpriteManager::draw: Drawing " << sprite.first << std::endl;
         sprite.second->draw(window);
     }
 }

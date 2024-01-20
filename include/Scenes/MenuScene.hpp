@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.hpp"
+#include "Sprite/SpriteManager.hpp"
 
 class MenuScene : public Scene {
     public:
@@ -11,4 +12,5 @@ class MenuScene : public Scene {
         void draw(std::shared_ptr<sf::RenderWindow> &window);
         void handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene);
     private:
+        SpriteManager _spriteManager;
 };
