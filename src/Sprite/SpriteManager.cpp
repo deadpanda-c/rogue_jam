@@ -39,6 +39,15 @@ void SpriteManager::draw(std::shared_ptr<sf::RenderWindow> &window)
     }
 }
 
+void SpriteManager::draw(std::shared_ptr<sf::RenderWindow> &window, const std::string &name)
+{
+    if (_sprites.find(name) == _sprites.end()) {
+        std::cout << "SpriteManager::draw: Sprite " << name << " doesn't exist" << std::endl;
+        return;
+    }
+    _sprites[name]->draw(window);
+}
+
 size_t SpriteManager::getNbSprites() const
 {
     return _sprites.size();
