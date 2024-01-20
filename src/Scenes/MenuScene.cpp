@@ -36,14 +36,14 @@ void MenuScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
         if (event.type == sf::Event::KeyPressed) {
             if (event.key.code == sf::Keyboard::Space) { // switch from scene Menu to scene Game
                 std::cout << "Space pressed" << std::endl;
-                scene = "game";
+                scene = "level_map";
             }
         }
         if (event.type == sf::Event::MouseButtonPressed) {
             if (event.mouseButton.button == sf::Mouse::Left) {
                 if (_isHoverPlayBtn) {
                     std::cout << "Play button pressed" << std::endl;
-                    scene = "game";
+                    scene = "level_map";
                 }
             }
         }

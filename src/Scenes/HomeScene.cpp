@@ -72,6 +72,8 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
                 _currentIndex += (_currentIndex < 3) ? 1 : -3;
             else if (event.key.code == sf::Keyboard::Left)
                 _currentIndex -= (_currentIndex > 0) ? 1 : -3;
+            else if (event.key.code == sf::Keyboard::Enter)
+                scene = "dungeon_1";
         }
     }
 }

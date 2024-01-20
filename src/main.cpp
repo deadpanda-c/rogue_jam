@@ -7,6 +7,7 @@
 #include "Scenes/SceneManager.hpp"
 #include "Scenes/MenuScene.hpp"
 #include "Scenes/HomeScene.hpp"
+#include "Scenes/dungeonTest.hpp"
 
 static const int WINDOW_WIDTH = 1920;
 static const int WINDOW_HEIGHT = 1080;
@@ -20,7 +21,8 @@ int main(void)
     SceneManager sceneManager;
     std::string currentScene = "menu";
     sceneManager.addScene("menu", std::make_shared<MenuScene>());
-    sceneManager.addScene("game", std::make_shared<HomeScene>());
+    sceneManager.addScene("level_map", std::make_shared<HomeScene>());
+    sceneManager.addScene("dungeon_1", std::make_shared<DungeonTest>());
 
     sceneManager.changeScene("menu");
     while (window->isOpen()) {
