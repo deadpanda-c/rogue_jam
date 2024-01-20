@@ -8,6 +8,7 @@
 #define HOME_MAP "../assets/img/home.png"
 
 #define FONT_TEXT  "../assets/fonts/PERRYGOT.TTF"
+#define ARIAL_FONT "../assets/fonts/Arial.ttf"
 
 #define ONEPIECE 0
 #define DRAGONBALL 1
