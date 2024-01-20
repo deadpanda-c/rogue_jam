@@ -66,6 +66,20 @@ void Sprite::draw(std::shared_ptr<sf::RenderWindow> window)
     window->draw(_sprite);
 }
 
+void Sprite::setColor(const sf::Color &color)
+{
+    _rect.setFillColor(color);
+}
+
+void Sprite::move(const sf::Vector2f &offset)
+{
+    if (_path.size() == 0) {
+        _rect.move(offset);
+    } else {
+        _sprite.move(offset);
+    }
+}
+
 sf::Vector2f Sprite::getScale() const
 {
     return _sprite.getScale();
@@ -80,3 +94,4 @@ sf::FloatRect Sprite::getGlobalBounds() const
 {
     return _sprite.getGlobalBounds();
 }
+

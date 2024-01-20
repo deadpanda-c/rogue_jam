@@ -11,6 +11,10 @@ void HomeScene::init()
     _spriteManager.addSprite("home_map", HOME_MAP);
     _spriteManager.getSprite("home_map")->setScale((sf::Vector2f){2, 2});
     _spriteManager.getSprite("home_map")->setPosition((sf::Vector2f){800, 100});
+
+    _player.init();
+    _player.setScale((sf::Vector2f){0.5, 0.5});
+    _player.setPosition((sf::Vector2f){1150, 200});
 }
 
 void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
@@ -20,6 +24,7 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
     while (window->pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             window->close();
+        _player.update(event);
     }
 }
 
@@ -32,6 +37,7 @@ void HomeScene::update(std::shared_ptr<sf::RenderWindow> &window, std::string &s
 void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
 {
     _spriteManager.draw(window, "home_map");
+    _player.draw(window);
 }
 
 HomeScene::~HomeScene()

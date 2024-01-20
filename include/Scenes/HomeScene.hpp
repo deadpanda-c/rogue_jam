@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.hpp"
+#include "Player.hpp"
 
 #include "Sprite/SpriteManager.hpp"
 #include "Text/TextManager.hpp"
@@ -18,4 +19,5 @@ class HomeScene : public Scene {
     private:
         SpriteManager _spriteManager;
         TextManager _textManager;
+        Player _player;
 };
