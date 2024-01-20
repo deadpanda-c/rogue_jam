@@ -8,6 +8,9 @@ MenuScene::MenuScene()
 void MenuScene::init()
 {
     std::cout << "[*] Menu is init" << std::endl;
+    _spriteManager.addSprite("background", BACKGROUND_MENU);
+    _spriteManager.getSprite("background")->setScale((sf::Vector2f){1, 1});
+
     _spriteManager.addSprite("default_play_btn", DEFAULT_PLAY_BTN);
     _spriteManager.getSprite("default_play_btn")->setPosition((sf::Vector2f){800, 500});
     _spriteManager.getSprite("default_play_btn")->setScale((sf::Vector2f){1.5, 1.5});
@@ -16,6 +19,11 @@ void MenuScene::init()
     _spriteManager.getSprite("hover_play_btn")->setPosition((sf::Vector2f){800, 500});
     _spriteManager.getSprite("hover_play_btn")->setScale((sf::Vector2f){1.5, 1.5});
     _isHoverPlayBtn = false;
+
+    _textManager.addText("title", "Dungeon Odyssey", TITLE_FONT);
+    _textManager.getText("title")->setCharacterSize(100);
+    _textManager.getText("title")->setPosition((sf::Vector2f){400, 100});
+    _textManager.getText("title")->setFillColor((sf::Color){211, 211, 211});
 }
 
 void MenuScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
@@ -51,10 +59,15 @@ void MenuScene::update(std::shared_ptr<sf::RenderWindow> &window, std::string &s
 
 void MenuScene::draw(std::shared_ptr<sf::RenderWindow> &window)
 {
+    // sprite draw
+    _spriteManager.draw(window, "background");
     if (_isHoverPlayBtn)
         _spriteManager.draw(window, "hover_play_btn");
     else
         _spriteManager.draw(window, "default_play_btn");
+
+    // text draw
+    _textManager.draw(window, "title");
 }
 
 MenuScene::~MenuScene()
