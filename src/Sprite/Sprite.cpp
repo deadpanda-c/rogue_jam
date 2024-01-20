@@ -81,16 +81,16 @@ void Sprite::move(const sf::Vector2f &offset)
 
 sf::Vector2f Sprite::getScale() const
 {
-    return _sprite.getScale();
+    return (_path.size() == 0) ? _rect.getScale() : _sprite.getScale();
 }
 
 sf::Vector2f Sprite::getPosition() const
 {
-    return _sprite.getPosition();
+    return (_path.size() == 0) ? _rect.getPosition() : _sprite.getPosition();
 }
 
 sf::FloatRect Sprite::getGlobalBounds() const
 {
-    return _sprite.getGlobalBounds();
+    return (_path.size() == 0) ? _rect.getGlobalBounds() : _sprite.getGlobalBounds();
 }
 

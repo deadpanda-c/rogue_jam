@@ -9,6 +9,11 @@
 
 #define FONT_TEXT  "../assets/fonts/PERRYGOT.TTF"
 
+#define ONEPIECE 0
+#define DRAGONBALL 1
+#define ASSASSINATION_CLASSROOM 2
+#define BLEACH 3
+
 class HomeScene : public Scene {
     public:
         HomeScene();
@@ -20,6 +25,8 @@ class HomeScene : public Scene {
         void handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene);
     private:
         SpriteManager _spriteManager;
-        TextManager _textManager;
+        TextManager _entranceTextManager;
+        TextManager _dungeonTextManager;
         Player _player;
+        int _currentIndex;
 };
