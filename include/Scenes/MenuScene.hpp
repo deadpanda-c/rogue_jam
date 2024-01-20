@@ -2,6 +2,9 @@
 #include "Scene.hpp"
 #include "Sprite/SpriteManager.hpp"
 
+#define DEFAULT_PLAY_BTN "../assets/play_default.png"
+#define HOVER_PLAY_BTN "../assets/play_hover.png"
+
 class MenuScene : public Scene {
     public:
         MenuScene();

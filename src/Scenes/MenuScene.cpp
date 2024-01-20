@@ -8,8 +8,13 @@ MenuScene::MenuScene()
 void MenuScene::init()
 {
     std::cout << "[*] Menu is init" << std::endl;
-    _spriteManager.addSprite("test", ""); // add a sprite into the sprites manager. If the path (second arg) is empty, a rectangle is going to be set instead
-    _spriteManager.getSprite("test")->setScale((sf::Vector2f){2, 2}); // by default, the size and the position are up to 0, 0. You should change it like that
+    _spriteManager.addSprite("default_play_btn", DEFAULT_PLAY_BTN);
+    _spriteManager.getSprite("default_play_btn")->setPosition((sf::Vector2f){100, 100});
+    _spriteManager.getSprite("default_play_btn")->setScale((sf::Vector2f){2, 2});
+
+    _spriteManager.addSprite("hover_play_btn", HOVER_PLAY_BTN);
+    _spriteManager.getSprite("hover_play_btn")->setPosition((sf::Vector2f){100, 100});
+    _spriteManager.getSprite("hover_play_btn")->setScale((sf::Vector2f){2, 2});
 }
 
 void MenuScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
@@ -30,7 +35,7 @@ void MenuScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
 
 void MenuScene::update(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
 {
-    window->clear(sf::Color::Blue);
+    window->clear();
     handleEvent(window, scene);
 }
 
