@@ -1,10 +1,10 @@
 #pragma once
 #include "Scene.hpp"
 
-class GameScene : public Scene {
+class HomeScene : public Scene {
     public:
-        GameScene();
-        ~GameScene();
+        HomeScene();
+        ~HomeScene();
 
         void init();
         void update(std::shared_ptr<sf::RenderWindow> &window, std::string &scene);
