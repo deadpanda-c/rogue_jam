@@ -18,6 +18,8 @@ class Sprite {
         void setTexture(const std::string &path);
         void setScale(const sf::Vector2f& scale);
         void setPosition(const sf::Vector2f& position);
+        void setColor(const sf::Color& color);
+        void move(const sf::Vector2f& offset);
         void draw(std::shared_ptr<sf::RenderWindow> window);
 
         sf::Vector2f getPosition() const;
