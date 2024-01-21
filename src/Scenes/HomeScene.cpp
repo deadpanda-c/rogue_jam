@@ -184,10 +184,22 @@ void HomeScene::init()
     _music.setVolume(30);
     _music.setLoop(true);
 
-    if (_soundBuffer.loadFromFile(SOUND_SELECTION))
+    if (_soundBuffer.loadFromFile(SOUND_SELECTION)) {
         _sound.setBuffer(_soundBuffer);
-    else
+        std::cout << "[*] Sound " << SOUND_SELECTION << " is initialized" << std::endl;
+    } else
         std::cout << "Error while loading the sound" << std::endl;
+
+    if (_soundMoneyBuffer.loadFromFile(NO_MONEY_SOUND)) {
+        _soundMoney.setBuffer(_soundMoneyBuffer);
+        std::cout << "[*] Sound " << NO_MONEY_SOUND << " is initialized" << std::endl;
+    } else
+        std::cout << "Error while loading the sound" << std::endl;
+
+    if (_soundPayBuffer.loadFromFile(PAY_SOUND)) {
+        _soundPay.setBuffer(_soundPayBuffer);
+        std::cout << "[*] Sound " << PAY_SOUND << " is initialized" << std::endl;
+    }
 }
 
 void HomeScene::switchDungeon(std::string &scene)
@@ -230,8 +242,11 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
                         _currentSold -= 50;
                         _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
                         std::cout << "buy item one" << std::endl;
+                        _soundPay.play();
                     } else {
                         std::cout << "not enough money" << std::endl;
+                        _soundMoney.play();
+
                     }
                     _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
                 } else if (_spriteManager.getSprite("buyItemTwo")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
@@ -239,8 +254,10 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
                         _currentSold -= 100;
                         _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
                         std::cout << "buy item two" << std::endl;
+                        _soundPay.play();
                     } else {
                         std::cout << "not enough money" << std::endl;
+                        _soundMoney.play();
                     }
                     _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
                 }
