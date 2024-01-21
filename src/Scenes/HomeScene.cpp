@@ -14,8 +14,41 @@ std::string convertIntToString(unsigned int  number)
     return result;
 }
 
+void HomeScene::initLevel(std::vector<bool> &levelUnlocked)
+{
+    levelUnlocked.push_back(true);
+    levelUnlocked.push_back(false);
+    levelUnlocked.push_back(false);
+}
+
 void HomeScene::init()
 {
+    initLevel(_dungeonLevelUnlocked[ONEPIECE]);
+    initLevel(_dungeonLevelUnlocked[KUROKO]);
+    initLevel(_dungeonLevelUnlocked[DRAGONBALL]);
+    initLevel(_dungeonLevelUnlocked[BLEACH]);
+    initLevel(_dungeonLevelUnlocked[ASSASSINATION_CLASSROOM]);
+
+    _dungeonLevelPrice[ONEPIECE] = std::make_pair(BEGGINER, 100);
+    _dungeonLevelPrice[ONEPIECE] = std::make_pair(INTERMEDIATE, 300);
+    _dungeonLevelPrice[ONEPIECE] = std::make_pair(ADVANCED, 500);
+
+    _dungeonLevelPrice[KUROKO] = std::make_pair(BEGGINER, 200);
+    _dungeonLevelPrice[KUROKO] = std::make_pair(INTERMEDIATE, 400);
+    _dungeonLevelPrice[KUROKO] = std::make_pair(ADVANCED, 600);
+
+    _dungeonLevelPrice[DRAGONBALL] = std::make_pair(BEGGINER, 300);
+    _dungeonLevelPrice[DRAGONBALL] = std::make_pair(INTERMEDIATE, 500);
+    _dungeonLevelPrice[DRAGONBALL] = std::make_pair(ADVANCED, 700);
+
+    _dungeonLevelPrice[BLEACH] = std::make_pair(BEGGINER, 400);
+    _dungeonLevelPrice[BLEACH] = std::make_pair(INTERMEDIATE, 600);
+    _dungeonLevelPrice[BLEACH] = std::make_pair(ADVANCED, 800);
+
+    _dungeonLevelPrice[ASSASSINATION_CLASSROOM] = std::make_pair(BEGGINER, 500);
+    _dungeonLevelPrice[ASSASSINATION_CLASSROOM] = std::make_pair(INTERMEDIATE, 700);
+    _dungeonLevelPrice[ASSASSINATION_CLASSROOM] = std::make_pair(ADVANCED, 900);
+
     _isStartBtnHover = false;
     _currentSold = 1000;
     _currentIndex = 0;
@@ -179,6 +212,133 @@ void HomeScene::init()
     _dungeonTextManager.getText("start")->setPosition((sf::Vector2f){1620, 990});
     _dungeonTextManager.getText("start")->setFillColor(sf::Color::White);
 
+
+//  _spriteManager.getSprite("shopCellOne")->setPosition((sf::Vector2f){1450, 600});
+// _spriteManager.getSprite("shopCellTwo")->setPosition((sf::Vector2f){1700, 600});
+    _dungeonSpriteManager[ONEPIECE] = std::make_shared<SpriteManager>();
+    _dungeonSpriteManager[KUROKO] = std::make_shared<SpriteManager>();
+    _dungeonSpriteManager[DRAGONBALL] = std::make_shared<SpriteManager>();
+    _dungeonSpriteManager[BLEACH] = std::make_shared<SpriteManager>();
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM] = std::make_shared<SpriteManager>();
+
+    _dungeonSpriteManager[ONEPIECE]->addSprite("onePieceHat", ONEPIECE_HAT);
+    _dungeonSpriteManager[ONEPIECE]->addSprite("onePieceDials", ONEPIECE_DIALS);
+    _dungeonSpriteManager[ONEPIECE]->addSprite("onePieceGomuGomu", ONEPIECE_GOMUGOMU);
+
+    _dungeonSpriteManager[ONEPIECE]->getSprite("onePieceHat")->setPosition((sf::Vector2f){1450, 600});
+    _dungeonSpriteManager[ONEPIECE]->getSprite("onePieceDials")->setPosition((sf::Vector2f){1450, 600});
+    _dungeonSpriteManager[ONEPIECE]->getSprite("onePieceGomuGomu")->setPosition((sf::Vector2f){1450, 600});
+
+    _dungeonSpriteManager[ONEPIECE]->addSprite("onePieceItoIto", ONEPIECE_ITOITO);
+    _dungeonSpriteManager[ONEPIECE]->addSprite("onePieceLogPose", ONEPIECE_LOGPOSE);
+    _dungeonSpriteManager[ONEPIECE]->addSprite("onePieceMeraMera", ONEPIECE_MERA);
+
+    _dungeonSpriteManager[ONEPIECE]->getSprite("onePieceItoIto")->setPosition((sf::Vector2f){1700, 600});
+    _dungeonSpriteManager[ONEPIECE]->getSprite("onePieceLogPose")->setPosition((sf::Vector2f){1700, 600});
+    _dungeonSpriteManager[ONEPIECE]->getSprite("onePieceMeraMera")->setPosition((sf::Vector2f){1700, 600});
+
+    _dungeonItems[ONEPIECE].first.push("onePieceHat");
+    _dungeonItems[ONEPIECE].first.push("onePieceDials");
+    _dungeonItems[ONEPIECE].first.push("onePieceGomuGomu");
+    _dungeonItems[ONEPIECE].second.push("onePieceItoIto");
+    _dungeonItems[ONEPIECE].second.push("onePieceLogPose");
+    _dungeonItems[ONEPIECE].second.push("onePieceMeraMera");
+
+
+    _dungeonSpriteManager[KUROKO]->addSprite("kurokoBasket", KUROKO_BASKET);
+    _dungeonSpriteManager[KUROKO]->addSprite("kuokoKaijo", KUROKO_KAIJO);
+    _dungeonSpriteManager[KUROKO]->addSprite("kurokoZone", KUROKO_ZONE);
+
+    _dungeonSpriteManager[KUROKO]->getSprite("kurokoBasket")->setPosition((sf::Vector2f){1450, 600});
+    _dungeonSpriteManager[KUROKO]->getSprite("kuokoKaijo")->setPosition((sf::Vector2f){1450, 600});
+    _dungeonSpriteManager[KUROKO]->getSprite("kurokoZone")->setPosition((sf::Vector2f){1450, 600});
+
+    _dungeonSpriteManager[KUROKO]->addSprite("kurokoSeirin", KUROKO_SEIRIN);
+    _dungeonSpriteManager[KUROKO]->addSprite("kurokoWristband", KUROKO_WRISTBAND);
+    _dungeonSpriteManager[KUROKO]->addSprite("kurokoYosen", KUROKO_YOSEN);
+
+    _dungeonSpriteManager[KUROKO]->getSprite("kurokoSeirin")->setPosition((sf::Vector2f){1700, 600});
+    _dungeonSpriteManager[KUROKO]->getSprite("kurokoWristband")->setPosition((sf::Vector2f){1700, 600});
+    _dungeonSpriteManager[KUROKO]->getSprite("kurokoYosen")->setPosition((sf::Vector2f){1700, 600});
+
+    _dungeonItems[KUROKO].first.push("kurokoBasket");
+    _dungeonItems[KUROKO].first.push("kuokoKaijo");
+    _dungeonItems[KUROKO].first.push("kurokoZone");
+    _dungeonItems[KUROKO].second.push("kurokoSeirin");
+    _dungeonItems[KUROKO].second.push("kurokoWristband");
+    _dungeonItems[KUROKO].second.push("kurokoYosen");
+
+
+    _dungeonSpriteManager[DRAGONBALL]->addSprite("dragonBallBarrier", DRAGONBALL_BARRIER);
+    _dungeonSpriteManager[DRAGONBALL]->addSprite("dragonBallCapsule", DRAGONBALL_CAPSULE);
+    _dungeonSpriteManager[DRAGONBALL]->addSprite("dragonBallEscape", DRAGONBALL_ESCAPE);
+
+    _dungeonSpriteManager[DRAGONBALL]->getSprite("dragonBallBarrier")->setPosition((sf::Vector2f){1450, 600});
+    _dungeonSpriteManager[DRAGONBALL]->getSprite("dragonBallCapsule")->setPosition((sf::Vector2f){1450, 600});
+    _dungeonSpriteManager[DRAGONBALL]->getSprite("dragonBallEscape")->setPosition((sf::Vector2f){1450, 600});
+
+    _dungeonSpriteManager[DRAGONBALL]->addSprite("dragonBallPowerKey", DRAGONBALL_POWERKEY);
+    _dungeonSpriteManager[DRAGONBALL]->addSprite("dragonBallEnergyCube", DRAGONBALL_ENERGYCUBE);
+    _dungeonSpriteManager[DRAGONBALL]->addSprite("dragonBallBall", DRAGONBALL_BALL);
+
+    _dungeonSpriteManager[DRAGONBALL]->getSprite("dragonBallPowerKey")->setPosition((sf::Vector2f){1700, 600});
+    _dungeonSpriteManager[DRAGONBALL]->getSprite("dragonBallEnergyCube")->setPosition((sf::Vector2f){1700, 600});
+    _dungeonSpriteManager[DRAGONBALL]->getSprite("dragonBallBall")->setPosition((sf::Vector2f){1700, 600});
+
+    _dungeonItems[DRAGONBALL].first.push("dragonBallBarrier");
+    _dungeonItems[DRAGONBALL].first.push("dragonBallCapsule");
+    _dungeonItems[DRAGONBALL].first.push("dragonBallEscape");
+    _dungeonItems[DRAGONBALL].second.push("dragonBallPowerKey");
+    _dungeonItems[DRAGONBALL].second.push("dragonBallEnergyCube");
+    _dungeonItems[DRAGONBALL].second.push("dragonBallBall");
+
+    _dungeonSpriteManager[BLEACH]->addSprite("bleachArcuryu", BLEACH_ARCURYU);
+    _dungeonSpriteManager[BLEACH]->addSprite("bleachGokkontekko", BLEACH_GOKKONTEKKO);
+    _dungeonSpriteManager[BLEACH]->addSprite("bleachHougyoku", BLEACH_HOUGYOKU);
+
+    _dungeonSpriteManager[BLEACH]->getSprite("bleachArcuryu")->setPosition((sf::Vector2f){1450, 600});
+    _dungeonSpriteManager[BLEACH]->getSprite("bleachGokkontekko")->setPosition((sf::Vector2f){1450, 600});
+    _dungeonSpriteManager[BLEACH]->getSprite("bleachHougyoku")->setPosition((sf::Vector2f){1450, 600});
+
+    _dungeonSpriteManager[BLEACH]->addSprite("bleachSodenoshirayuki", BLEACH_SODENOSHIRAYUKI);
+    _dungeonSpriteManager[BLEACH]->addSprite("bleachSoulcandy", BLEACH_SOULCANDY);
+    _dungeonSpriteManager[BLEACH]->addSprite("bleachZangetsu", BLEACH_ZANGETSU);
+
+    _dungeonSpriteManager[BLEACH]->getSprite("bleachSodenoshirayuki")->setPosition((sf::Vector2f){1700, 600});
+    _dungeonSpriteManager[BLEACH]->getSprite("bleachSoulcandy")->setPosition((sf::Vector2f){1700, 600});
+    _dungeonSpriteManager[BLEACH]->getSprite("bleachZangetsu")->setPosition((sf::Vector2f){1700, 600});
+
+    _dungeonItems[BLEACH].first.push("bleachArcuryu");
+    _dungeonItems[BLEACH].first.push("bleachGokkontekko");
+    _dungeonItems[BLEACH].first.push("bleachHougyoku");
+    _dungeonItems[BLEACH].second.push("bleachSodenoshirayuki");
+    _dungeonItems[BLEACH].second.push("bleachSoulcandy");
+    _dungeonItems[BLEACH].second.push("bleachZangetsu");
+
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->addSprite("deathnote", ASSASSINATION_CLASSROOM_DEATHNOTE);
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->addSprite("matraque", ASSASSINATION_CLASSROOM_MATRAQUE);
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->addSprite("regle", ASSASSINATION_CLASSROOM_REGLE);
+
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->getSprite("deathnote")->setPosition((sf::Vector2f){1450, 600});
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->getSprite("matraque")->setPosition((sf::Vector2f){1450, 600});
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->getSprite("regle")->setPosition((sf::Vector2f){1450, 600});
+
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->addSprite("knifeo", ASSASSINATION_CLASSROOM_SAAUSKNIFEO);
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->addSprite("stylo", ASSASSINATION_CLASSROOM_STYLO);
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->addSprite("gun", ASSASSINATION_CLASSROOM_SAAUSGUN);
+
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->getSprite("knifeo")->setPosition((sf::Vector2f){1700, 600});
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->getSprite("stylo")->setPosition((sf::Vector2f){1700, 600});
+    _dungeonSpriteManager[ASSASSINATION_CLASSROOM]->getSprite("gun")->setPosition((sf::Vector2f){1700, 600});
+
+    _dungeonItems[ASSASSINATION_CLASSROOM].first.push("deathnote");
+    _dungeonItems[ASSASSINATION_CLASSROOM].first.push("matraque");
+    _dungeonItems[ASSASSINATION_CLASSROOM].first.push("regle");
+    _dungeonItems[ASSASSINATION_CLASSROOM].second.push("knifeo");
+    _dungeonItems[ASSASSINATION_CLASSROOM].second.push("stylo");
+    _dungeonItems[ASSASSINATION_CLASSROOM].second.push("gun");
+
+    // init the musics and the sounds
     if (!_music.openFromFile(MUSIC_MAP))
         std::cout << "Error while loading the music" << std::endl;
     _music.setVolume(30);
@@ -355,6 +515,11 @@ void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
     _spriteManager.draw(window, "buyItemOne");
     _spriteManager.draw(window, "buyItemTwo");
     _spriteManager.draw(window, (_isStartBtnHover) ? "start_hover" : "start");
+
+
+    // draw the items of the shop from the stack
+    _dungeonSpriteManager[(Dungeon)_currentIndex]->draw(window, _dungeonItems[(Dungeon)_currentIndex].first.top());
+    _dungeonSpriteManager[(Dungeon)_currentIndex]->draw(window, _dungeonItems[(Dungeon)_currentIndex].second.top());
 
     // display the text (labels)
     _entranceTextManager.draw(window, "entrance_onepiece");

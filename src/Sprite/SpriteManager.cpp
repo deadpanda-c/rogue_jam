@@ -20,7 +20,7 @@ void SpriteManager::addSprite(const std::string &name, const std::string &path)
     std::cout << "SpriteManager::addSprite: Sprite " << name << " added" << std::endl;
     _sprites[name] = std::make_shared<Sprite>();
     std::cout << "SpriteManager::addSprite: Sprite " << name << " initialized" << std::endl;
-    _sprites[name]->init(path, (sf::Vector2f){0, 0}, (sf::Vector2f){0, 0});
+    _sprites[name]->init(path, (sf::Vector2f){0, 0}, (sf::Vector2f){0.75, 0.75});
 }
 
 void SpriteManager::removeSprite(const std::string &name)
