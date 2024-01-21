@@ -10,6 +10,12 @@
 #include "Scenes/MenuScene.hpp"
 #include "Scenes/HomeScene.hpp"
 
+#include "Dungeons/AssassinationClassroomDungeon.hpp"
+#include "Dungeons/BleachDungeon.hpp"
+#include "Dungeons/OnePieceDungeon.hpp"
+#include "Dungeons/DragonBallDungeon.hpp"
+#include "Dungeons/KurokoNoBasketDungeon.hpp"
+
 static const int WINDOW_WIDTH = 1920;
 static const int WINDOW_HEIGHT = 1080;
 
@@ -23,6 +29,11 @@ int main(void)
     std::string currentScene = "menu";
     sceneManager.addScene("menu", std::make_shared<MenuScene>());
     sceneManager.addScene("game", std::make_shared<HomeScene>());
+    sceneManager.addScene("assassinationClassroom", std::make_shared<AssassinationClassroomDungeon>());
+    sceneManager.addScene("bleach", std::make_shared<BleachDungeon>());
+    sceneManager.addScene("onePiece", std::make_shared<OnePieceDungeon>());
+    sceneManager.addScene("dragonBall", std::make_shared<DragonBallDungeon>());
+    sceneManager.addScene("kurokoNoBasket", std::make_shared<KurokoNoBasketDungeon>());
 
     sceneManager.changeScene("menu");
     while (window->isOpen()) {

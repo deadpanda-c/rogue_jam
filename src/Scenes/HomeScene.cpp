@@ -28,12 +28,14 @@ void HomeScene::init()
     _spriteManager.addSprite("entrance_assassination-classroom", "");
     _spriteManager.addSprite("entrance_dragon-ball", "");
     _spriteManager.addSprite("entrance_bleach", "");
+    _spriteManager.addSprite("entrance_kuroko-no-basket", "");
 
     // create the sprite for the highscore of each dungeon
     _spriteManager.addSprite("highScore_onepiece", "");
     _spriteManager.addSprite("highScore_assassination-classroom", "");
     _spriteManager.addSprite("highScore_dragon-ball", "");
     _spriteManager.addSprite("highScore_bleach", "");
+    _spriteManager.addSprite("highScore_kuroko-no-basket", "");
 
     // create the zone for the shop
     _spriteManager.addSprite("shop", "");
@@ -54,6 +56,9 @@ void HomeScene::init()
     _spriteManager.getSprite("entrance_bleach")->setScale((sf::Vector2f){0.5, 0.5});
     _spriteManager.getSprite("entrance_bleach")->setPosition((sf::Vector2f){1300, 580});
 
+    _spriteManager.getSprite("entrance_kuroko-no-basket")->setScale((sf::Vector2f){0.5, 0.5});
+    _spriteManager.getSprite("entrance_kuroko-no-basket")->setPosition((sf::Vector2f){950, 300});
+
     _spriteManager.getSprite("highScore_onepiece")->setScale((sf::Vector2f){2, 2});
     _spriteManager.getSprite("highScore_onepiece")->setPosition((sf::Vector2f){1550, 200});
 
@@ -65,6 +70,9 @@ void HomeScene::init()
 
     _spriteManager.getSprite("highScore_bleach")->setScale((sf::Vector2f){2, 2});
     _spriteManager.getSprite("highScore_bleach")->setPosition((sf::Vector2f){1550, 200});
+
+    _spriteManager.getSprite("highScore_kuroko-no-basket")->setScale((sf::Vector2f){2, 2});
+    _spriteManager.getSprite("highScore_kuroko-no-basket")->setPosition((sf::Vector2f){1550, 200});
 
     _spriteManager.getSprite("shop")->setScale((sf::Vector2f){5, 4.5});
     _spriteManager.getSprite("shop")->setPosition((sf::Vector2f){1400, 450});
@@ -88,12 +96,14 @@ void HomeScene::init()
     _entranceTextManager.addText("entrance_assassination-classroom", "Assassination Classroom", FONT_TEXT);
     _entranceTextManager.addText("entrance_dragon-ball", "Dragon Ball", FONT_TEXT);
     _entranceTextManager.addText("entrance_bleach", "Bleach", FONT_TEXT);
+    _entranceTextManager.addText("entrance_kuroko-no-basket", "Kuroko no Basket", FONT_TEXT);
 
     // create the Text for the name of each dungeon (as title on the right of the screen)
     _dungeonTextManager.addText("dungeonName_onepiece", "One Piece", FONT_TEXT);
     _dungeonTextManager.addText("dungeonName_assassination-classroom", "Assassination Classroom", FONT_TEXT);
     _dungeonTextManager.addText("dungeonName_dragon-ball", "Dragon Ball", FONT_TEXT);
     _dungeonTextManager.addText("dungeonName_bleach", "Bleach", FONT_TEXT);
+    _dungeonTextManager.addText("dungeonName_kuroko-no-basket", "Kuroko no Basket", FONT_TEXT);
     _dungeonTextManager.addText("shopTitle", "Shop", FONT_TEXT);
     _dungeonTextManager.addText("current_sold", convertIntToString(_currentSold) + " {E}", ARIAL_FONT);
     _dungeonTextManager.addText("buyCellOne", "Buy", FONT_TEXT);
@@ -111,11 +121,13 @@ void HomeScene::init()
     sf::Vector2f currentPosAssassinationClassroom = _spriteManager.getSprite("entrance_assassination-classroom")->getPosition();
     sf::Vector2f currentPosKurokoNoBasket = _spriteManager.getSprite("entrance_dragon-ball")->getPosition();
     sf::Vector2f currentPosBleach = _spriteManager.getSprite("entrance_bleach")->getPosition();
+    sf::Vector2f currentPosKurokoNoBasketTwo = _spriteManager.getSprite("entrance_kuroko-no-basket")->getPosition();
 
     _entranceTextManager.getText("entrance_onepiece")->setPosition((sf::Vector2f){currentPosOnePiece.x - 20, currentPosOnePiece.y - 50});
     _entranceTextManager.getText("entrance_assassination-classroom")->setPosition((sf::Vector2f){currentPosAssassinationClassroom.x - 80, currentPosAssassinationClassroom.y - 50});
     _entranceTextManager.getText("entrance_dragon-ball")->setPosition((sf::Vector2f){currentPosKurokoNoBasket.x - 40, currentPosKurokoNoBasket.y - 50});
     _entranceTextManager.getText("entrance_bleach")->setPosition((sf::Vector2f){currentPosBleach.x - 20, currentPosBleach.y - 50});
+    _entranceTextManager.getText("entrance_kuroko-no-basket")->setPosition((sf::Vector2f){currentPosKurokoNoBasketTwo.x - 70, currentPosKurokoNoBasketTwo.y - 50});
 
     // set the font size and color of the text for the name of each dungeon
     _dungeonTextManager.getText("dungeonName_onepiece")->setCharacterSize(50);
@@ -129,6 +141,9 @@ void HomeScene::init()
 
     _dungeonTextManager.getText("dungeonName_bleach")->setCharacterSize(60);
     _dungeonTextManager.getText("dungeonName_bleach")->setPosition((sf::Vector2f){1500, 100});
+
+    _dungeonTextManager.getText("dungeonName_kuroko-no-basket")->setCharacterSize(30);
+    _dungeonTextManager.getText("dungeonName_kuroko-no-basket")->setPosition((sf::Vector2f){1500, 100});
 
     _dungeonTextManager.getText("shopTitle")->setCharacterSize(60);
     _dungeonTextManager.getText("shopTitle")->setPosition((sf::Vector2f){1425, 475});
@@ -153,9 +168,18 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
             window->close();
         if (event.type == sf::Event::KeyPressed) {
             if (event.key.code == sf::Keyboard::Right)
-                _currentIndex += (_currentIndex < 3) ? 1 : -3;
+                _currentIndex += (_currentIndex < 4) ? 1 : -4;
             else if (event.key.code == sf::Keyboard::Left)
-                _currentIndex -= (_currentIndex > 0) ? 1 : -3;
+                _currentIndex -= (_currentIndex > 0) ? 1 : -4;
+
+            // press enter
+            if (event.key.code == sf::Keyboard::Return) {
+                scene = (_currentIndex == 0) ? "onePiece" :
+                        (_currentIndex == 1) ? "assassinationClassroom" :
+                        (_currentIndex == 2) ? "dragonBall" :
+                        (_currentIndex == 3) ? "kurokoNoBasket" :
+                        "bleach";
+            }
         }
         // check mouse event
         if (event.type == sf::Event::MouseButtonPressed) {
@@ -195,25 +219,35 @@ void HomeScene::update(std::shared_ptr<sf::RenderWindow> &window, std::string &s
             _entranceTextManager.getText("entrance_assassination-classroom")->setFillColor(sf::Color::White);
             _entranceTextManager.getText("entrance_dragon-ball")->setFillColor(sf::Color::White);
             _entranceTextManager.getText("entrance_bleach")->setFillColor(sf::Color::White);
+            _entranceTextManager.getText("entrance_kuroko-no-basket")->setFillColor(sf::Color::White);
             break;
         case 1:
             _entranceTextManager.getText("entrance_assassination-classroom")->setFillColor(sf::Color::Red);
             _entranceTextManager.getText("entrance_onepiece")->setFillColor(sf::Color::White);
             _entranceTextManager.getText("entrance_dragon-ball")->setFillColor(sf::Color::White);
             _entranceTextManager.getText("entrance_bleach")->setFillColor(sf::Color::White);
+            _entranceTextManager.getText("entrance_kuroko-no-basket")->setFillColor(sf::Color::White);
             break;
         case 2:
             _entranceTextManager.getText("entrance_dragon-ball")->setFillColor(sf::Color::Red);
             _entranceTextManager.getText("entrance_onepiece")->setFillColor(sf::Color::White);
             _entranceTextManager.getText("entrance_assassination-classroom")->setFillColor(sf::Color::White);
             _entranceTextManager.getText("entrance_bleach")->setFillColor(sf::Color::White);
+            _entranceTextManager.getText("entrance_kuroko-no-basket")->setFillColor(sf::Color::White);
             break;
         case 3:
-            _entranceTextManager.getText("entrance_bleach")->setFillColor(sf::Color::Red);
+            _entranceTextManager.getText("entrance_kuroko-no-basket")->setFillColor(sf::Color::Red);
+            _entranceTextManager.getText("entrance_bleach")->setFillColor(sf::Color::White);
             _entranceTextManager.getText("entrance_onepiece")->setFillColor(sf::Color::White);
             _entranceTextManager.getText("entrance_assassination-classroom")->setFillColor(sf::Color::White);
             _entranceTextManager.getText("entrance_dragon-ball")->setFillColor(sf::Color::White);
             break;
+        case 4:
+            _entranceTextManager.getText("entrance_bleach")->setFillColor(sf::Color::Red);
+            _entranceTextManager.getText("entrance_onepiece")->setFillColor(sf::Color::White);
+            _entranceTextManager.getText("entrance_assassination-classroom")->setFillColor(sf::Color::White);
+            _entranceTextManager.getText("entrance_dragon-ball")->setFillColor(sf::Color::White);
+            _entranceTextManager.getText("entrance_kuroko-no-basket")->setFillColor(sf::Color::White);
     }
 }
 
@@ -225,10 +259,12 @@ void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
     _spriteManager.draw(window, "entrance_assassination-classroom");
     _spriteManager.draw(window, "entrance_dragon-ball");
     _spriteManager.draw(window, "entrance_bleach");
+    _spriteManager.draw(window, "entrance_kuroko-no-basket");
     _spriteManager.draw(window,
             (_currentIndex == 0) ? "highScore_onepiece" :
             (_currentIndex == 1) ? "highScore_assassination-classroom" :
             (_currentIndex == 2) ? "highScore_dragon-ball" :
+            (_currentIndex == 3) ? "highScore_kuroko-no-basket" :
             "highScore_bleach");
     _spriteManager.draw(window, "shop");
     _spriteManager.draw(window, "shopCellOne");
@@ -241,12 +277,14 @@ void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
     _entranceTextManager.draw(window, "entrance_assassination-classroom");
     _entranceTextManager.draw(window, "entrance_dragon-ball");
     _entranceTextManager.draw(window, "entrance_bleach");
+    _entranceTextManager.draw(window, "entrance_kuroko-no-basket");
 
     // display the text (title)
     _dungeonTextManager.draw(window,
             (_currentIndex == 0) ? "dungeonName_onepiece" :
             (_currentIndex == 1) ? "dungeonName_assassination-classroom" :
             (_currentIndex == 2) ? "dungeonName_dragon-ball" :
+            (_currentIndex == 3) ? "dungeonName_kuroko-no-basket" :
             "dungeonName_bleach");
     _dungeonTextManager.draw(window, "shopTitle");
     _dungeonTextManager.draw(window, "current_sold");

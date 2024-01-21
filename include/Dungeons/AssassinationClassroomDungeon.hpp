@@ -5,9 +5,7 @@
 ** AssassinationClassroomDungeon
 */
 
-#ifndef BLEACHDUNGEON_HPP_
-#define BLEACHDUNGEON_HPP_
-
+#pragma once
 #include "Dungeon.hpp"
 
 class AssassinationClassroomDungeon : public Dungeon {
@@ -23,4 +21,3 @@ class AssassinationClassroomDungeon : public Dungeon {
     private:
 };
 
-#endif /* !BLEACHDUNGEON_HPP_ */

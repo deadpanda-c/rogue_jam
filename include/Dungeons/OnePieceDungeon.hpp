@@ -5,8 +5,7 @@
 ** OnePieceDungeon
 */
 
-#ifndef BLEACHDUNGEON_HPP_
-#define BLEACHDUNGEON_HPP_
+#pragma once
 
 #include "Dungeon.hpp"
 
@@ -22,5 +21,3 @@ class OnePieceDungeon : public Dungeon {
     protected:
     private:
 };
-
-#endif /* !BLEACHDUNGEON_HPP_ */
