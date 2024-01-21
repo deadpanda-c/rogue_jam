@@ -1,7 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
 
 #include <memory>
 #include <iostream>
@@ -9,6 +7,7 @@
 #include "Scenes/SceneManager.hpp"
 #include "Scenes/MenuScene.hpp"
 #include "Scenes/HomeScene.hpp"
+#include "Scenes/dungeonTest.hpp"
 
 #include "Dungeons/AssassinationClassroomDungeon.hpp"
 #include "Dungeons/BleachDungeon.hpp"
@@ -28,7 +27,7 @@ int main(void)
     SceneManager sceneManager;
     std::string currentScene = "menu";
     sceneManager.addScene("menu", std::make_shared<MenuScene>());
-    sceneManager.addScene("game", std::make_shared<HomeScene>());
+    sceneManager.addScene("level_map", std::make_shared<HomeScene>());
     sceneManager.addScene("assassinationClassroom", std::make_shared<AssassinationClassroomDungeon>());
     sceneManager.addScene("bleach", std::make_shared<BleachDungeon>());
     sceneManager.addScene("onePiece", std::make_shared<OnePieceDungeon>());

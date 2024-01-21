@@ -19,12 +19,14 @@ class Sprite {
         void setScale(const sf::Vector2f& scale);
         void setPosition(const sf::Vector2f& position);
         void setColor(const sf::Color& color);
+        void setTextureRect(const sf::IntRect& rect);
         void move(const sf::Vector2f& offset);
         void draw(std::shared_ptr<sf::RenderWindow> window);
 
         sf::Vector2f getPosition() const;
         sf::Vector2f getScale() const;
         sf::FloatRect getGlobalBounds() const;
+        sf::IntRect getTextureRect() const;
     private:
         std::string _path;
         sf::RectangleShape _rect;
