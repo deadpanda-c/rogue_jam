@@ -58,11 +58,11 @@ void HomeScene::init()
     _spriteManager.getSprite("home_map")->setScale((sf::Vector2f){1, 1});
 
     // create the sprite for the entrance to the dungeons
-    _spriteManager.addSprite("entrance_onepiece", "");
-    _spriteManager.addSprite("entrance_assassination-classroom", "");
-    _spriteManager.addSprite("entrance_dragon-ball", "");
-    _spriteManager.addSprite("entrance_bleach", "");
-    _spriteManager.addSprite("entrance_kuroko-no-basket", "");
+    _spriteManager.addSprite("entrance_onepiece", ONEPIECE_LOGO);
+    _spriteManager.addSprite("entrance_assassination-classroom", ASSASSINATION_CLASSROOM_LOGO);
+    _spriteManager.addSprite("entrance_dragon-ball", DRAGONBALL_LOGO);
+    _spriteManager.addSprite("entrance_bleach", BLEACH_LOGO);
+    _spriteManager.addSprite("entrance_kuroko-no-basket", KUROKO_LOGO);
 
     // create the sprite for the highscore of each dungeon
     _spriteManager.addSprite("highScore_onepiece", "");
@@ -82,7 +82,7 @@ void HomeScene::init()
     _spriteManager.addSprite("start", START_BUTTON);
     _spriteManager.addSprite("start_hover", START_BUTTON_HOVER);
     // set the scale and position of the sprites
-    _spriteManager.getSprite("entrance_onepiece")->setScale((sf::Vector2f){0.5, 0.5});
+    _spriteManager.getSprite("entrance_onepiece")->setScale((sf::Vector2f){0.25, 0.25});
     _spriteManager.getSprite("entrance_onepiece")->setPosition((sf::Vector2f){300, 140});
 
     _spriteManager.getSprite("entrance_assassination-classroom")->setScale((sf::Vector2f){0.5, 0.5});
@@ -91,11 +91,11 @@ void HomeScene::init()
     _spriteManager.getSprite("entrance_dragon-ball")->setScale((sf::Vector2f){0.5, 0.5});
     _spriteManager.getSprite("entrance_dragon-ball")->setPosition((sf::Vector2f){300, 580});
 
-    _spriteManager.getSprite("entrance_bleach")->setScale((sf::Vector2f){0.5, 0.5});
-    _spriteManager.getSprite("entrance_bleach")->setPosition((sf::Vector2f){1300, 580});
+    _spriteManager.getSprite("entrance_bleach")->setScale((sf::Vector2f){0.25, 0.25});
+    _spriteManager.getSprite("entrance_bleach")->setPosition((sf::Vector2f){1200, 550});
 
     _spriteManager.getSprite("entrance_kuroko-no-basket")->setScale((sf::Vector2f){0.5, 0.5});
-    _spriteManager.getSprite("entrance_kuroko-no-basket")->setPosition((sf::Vector2f){950, 300});
+    _spriteManager.getSprite("entrance_kuroko-no-basket")->setPosition((sf::Vector2f){850, 300});
 
     _spriteManager.getSprite("highScore_onepiece")->setScale((sf::Vector2f){2, 2});
     _spriteManager.getSprite("highScore_onepiece")->setPosition((sf::Vector2f){1550, 200});
@@ -176,7 +176,7 @@ void HomeScene::init()
     _entranceTextManager.getText("entrance_assassination-classroom")->setPosition((sf::Vector2f){currentPosAssassinationClassroom.x - 80, currentPosAssassinationClassroom.y - 50});
     _entranceTextManager.getText("entrance_dragon-ball")->setPosition((sf::Vector2f){currentPosKurokoNoBasket.x - 40, currentPosKurokoNoBasket.y - 50});
     _entranceTextManager.getText("entrance_bleach")->setPosition((sf::Vector2f){currentPosBleach.x - 20, currentPosBleach.y - 50});
-    _entranceTextManager.getText("entrance_kuroko-no-basket")->setPosition((sf::Vector2f){currentPosKurokoNoBasketTwo.x - 70, currentPosKurokoNoBasketTwo.y - 50});
+    _entranceTextManager.getText("entrance_kuroko-no-basket")->setPosition((sf::Vector2f){currentPosKurokoNoBasketTwo.x - 50, currentPosKurokoNoBasketTwo.y - 20});
 
     // set the font size and color of the text for the name of each dungeon
     _dungeonTextManager.getText("dungeonName_onepiece")->setCharacterSize(50);

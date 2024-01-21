@@ -60,7 +60,7 @@ void MenuScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
                 }
             }
         }
-        if (scene == "game") {
+        if (scene == "level_map") {
             _music.stop();
         }
     }

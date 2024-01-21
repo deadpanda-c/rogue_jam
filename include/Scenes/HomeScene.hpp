@@ -9,6 +9,13 @@
 
 #define HOME_MAP "../assets/img/home.png"
 
+
+#define ONEPIECE_LOGO "../assets/img/onepiece/logo.png"
+#define DRAGONBALL_LOGO "../assets/img/dragon_ball/logo.png"
+#define KUROKO_LOGO "../assets/img/kuroko/logo.png"
+#define ASSASSINATION_CLASSROOM_LOGO "../assets/img/assassination_classroom/logo.png"
+#define BLEACH_LOGO "../assets/img/bleach/logo.png"
+
 #define START_BUTTON "../assets/img/start_btn.png"
 #define START_BUTTON_HOVER "../assets/img/start_btn_hover.png"
 
