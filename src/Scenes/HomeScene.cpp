@@ -16,6 +16,7 @@ std::string convertIntToString(unsigned int  number)
 
 void HomeScene::init()
 {
+    _isStartBtnHover = false;
     _currentSold = 1000;
     _currentIndex = 0;
     std::cout << "[*] Home is init" << std::endl;
@@ -43,6 +44,10 @@ void HomeScene::init()
     _spriteManager.addSprite("shopCellTwo", "");
     _spriteManager.addSprite("buyItemOne", "");
     _spriteManager.addSprite("buyItemTwo", "");
+
+    // create the sprite for the start button
+    _spriteManager.addSprite("start", START_BUTTON);
+    _spriteManager.addSprite("start_hover", START_BUTTON_HOVER);
     // set the scale and position of the sprites
     _spriteManager.getSprite("entrance_onepiece")->setScale((sf::Vector2f){0.5, 0.5});
     _spriteManager.getSprite("entrance_onepiece")->setPosition((sf::Vector2f){300, 140});
@@ -83,6 +88,13 @@ void HomeScene::init()
 
     _spriteManager.getSprite("shopCellTwo")->setScale((sf::Vector2f){1.5, 1.5});
     _spriteManager.getSprite("shopCellTwo")->setPosition((sf::Vector2f){1700, 600});
+
+    _spriteManager.getSprite("start")->setScale((sf::Vector2f){1, 0.75});
+    _spriteManager.getSprite("start")->setPosition((sf::Vector2f){1500, 950});
+
+    _spriteManager.getSprite("start_hover")->setScale((sf::Vector2f){1, 0.75});
+    _spriteManager.getSprite("start_hover")->setPosition((sf::Vector2f){1500, 950});
+
     sf::Vector2f currentPos = _spriteManager.getSprite("shopCellOne")->getPosition();
     sf::Vector2f currentPosTwo = _spriteManager.getSprite("shopCellTwo")->getPosition();
 
@@ -108,6 +120,10 @@ void HomeScene::init()
     _dungeonTextManager.addText("current_sold", convertIntToString(_currentSold) + " {E}", ARIAL_FONT);
     _dungeonTextManager.addText("buyCellOne", "Buy", FONT_TEXT);
     _dungeonTextManager.addText("buyCellTwo", "Buy", FONT_TEXT);
+
+
+    // add text for the start btn
+    _dungeonTextManager.addText("start", "Start", FONT_TEXT);
 
     // set the font size and color of the text for the entrance to the dungeons
     for (auto &text : _entranceTextManager.getTexts()) {
@@ -157,6 +173,20 @@ void HomeScene::init()
     _dungeonTextManager.getText("buyCellTwo")->setCharacterSize(30);
     _dungeonTextManager.getText("buyCellTwo")->setPosition((sf::Vector2f){currentPosTwo.x + 30, currentPos.y + 185});
     _dungeonTextManager.getText("buyCellTwo")->setFillColor(sf::Color::Black);
+
+    // set the font size and color of the text for the start btn
+    _dungeonTextManager.getText("start")->setCharacterSize(30);
+    _dungeonTextManager.getText("start")->setPosition((sf::Vector2f){1620, 990});
+    _dungeonTextManager.getText("start")->setFillColor(sf::Color::White);
+}
+
+void HomeScene::switchDungeon(std::string &scene)
+{
+    scene = (_currentIndex == 0) ? "onePiece" :
+            (_currentIndex == 1) ? "assassinationClassroom" :
+            (_currentIndex == 2) ? "dragonBall" :
+            (_currentIndex == 3) ? "kurokoNoBasket" :
+            "bleach";
 }
 
 void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
@@ -174,11 +204,7 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
 
             // press enter
             if (event.key.code == sf::Keyboard::Return) {
-                scene = (_currentIndex == 0) ? "onePiece" :
-                        (_currentIndex == 1) ? "assassinationClassroom" :
-                        (_currentIndex == 2) ? "dragonBall" :
-                        (_currentIndex == 3) ? "kurokoNoBasket" :
-                        "bleach";
+                switchDungeon(scene);
             }
         }
         // check mouse event
@@ -203,6 +229,21 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
                     }
                     _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
                 }
+            }
+            // get the position of the mouse and click on the start btn
+            if (_spriteManager.getSprite("start")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+                switchDungeon(scene);
+            // detect if the mouse is on the entrance of a dungeon
+            if (_spriteManager.getSprite("entrance_onepiece")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+                _currentIndex = 0;
+            } else if (_spriteManager.getSprite("entrance_assassination-classroom")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+                _currentIndex = 1;
+            } else if (_spriteManager.getSprite("entrance_dragon-ball")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+                _currentIndex = 2;
+            } else if (_spriteManager.getSprite("entrance_kuroko-no-basket")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+                _currentIndex = 3;
+            } else if (_spriteManager.getSprite("entrance_bleach")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
+                _currentIndex = 4;
             }
         }
     }
@@ -249,6 +290,8 @@ void HomeScene::update(std::shared_ptr<sf::RenderWindow> &window, std::string &s
             _entranceTextManager.getText("entrance_dragon-ball")->setFillColor(sf::Color::White);
             _entranceTextManager.getText("entrance_kuroko-no-basket")->setFillColor(sf::Color::White);
     }
+
+    _isStartBtnHover = (_spriteManager.getSprite("start")->getGlobalBounds().contains(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y)) ? true : false;
 }
 
 void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
@@ -271,6 +314,7 @@ void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
     _spriteManager.draw(window, "shopCellTwo");
     _spriteManager.draw(window, "buyItemOne");
     _spriteManager.draw(window, "buyItemTwo");
+    _spriteManager.draw(window, (_isStartBtnHover) ? "start_hover" : "start");
 
     // display the text (labels)
     _entranceTextManager.draw(window, "entrance_onepiece");
@@ -290,6 +334,7 @@ void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
     _dungeonTextManager.draw(window, "current_sold");
     _dungeonTextManager.draw(window, "buyCellOne");
     _dungeonTextManager.draw(window, "buyCellTwo");
+    _dungeonTextManager.draw(window, "start");
 }
 
 HomeScene::~HomeScene()
