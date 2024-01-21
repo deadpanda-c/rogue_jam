@@ -2,24 +2,24 @@
 ** EPITECH PROJECT, 2024
 ** rogue_jam
 ** File description:
-** BleachDungeon
+** DragonBallDungeon
 */
 
-#include "Dungeons/BleachDungeon.hpp"
+#include "Dungeons/DragonBallDungeon.hpp"
 
-BleachDungeon::BleachDungeon()
+DragonBallDungeon::DragonBallDungeon()
 {
 }
 
-BleachDungeon::~BleachDungeon()
+DragonBallDungeon::~DragonBallDungeon()
 {
 }
 
-void BleachDungeon::init() {
+void DragonBallDungeon::init() {
 
 }
 
-void BleachDungeon::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
+void DragonBallDungeon::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
 {
     sf::Event event;
 
@@ -34,13 +34,13 @@ void BleachDungeon::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::
         }
     }
 }
-
-void BleachDungeon::update(std::shared_ptr<sf::RenderWindow> &window, std::string &dungeon)
+void DragonBallDungeon::update(std::shared_ptr<sf::RenderWindow> &window, std::string &dungeon)
 {
     window->clear();
     handleEvent(window, dungeon);
 }
 
-void BleachDungeon::draw(std::shared_ptr<sf::RenderWindow> &window) {
+
+void DragonBallDungeon::draw(std::shared_ptr<sf::RenderWindow> &window) {
 
 }

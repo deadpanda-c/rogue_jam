@@ -6,5 +6,6 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 include_directories(include)
 
-add_executable(rogue ${SOURCES})
+add_executable(rogue ${SOURCES}
+        include/Scenes/dungeonTest.hpp)
 target_link_libraries(rogue sfml-graphics sfml-window sfml-system sfml-audio)

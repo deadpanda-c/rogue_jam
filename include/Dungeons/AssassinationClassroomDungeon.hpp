@@ -2,17 +2,16 @@
 ** EPITECH PROJECT, 2024
 ** rogue_jam
 ** File description:
-** BleachDungeon
+** AssassinationClassroomDungeon
 */
 
 #pragma once
-
 #include "Dungeon.hpp"
 
-class BleachDungeon : public Dungeon {
+class AssassinationClassroomDungeon : public Dungeon {
     public:
-        BleachDungeon();
-        ~BleachDungeon();
+        AssassinationClassroomDungeon();
+        ~AssassinationClassroomDungeon();
 
         void init() override;
         void update(std::shared_ptr<sf::RenderWindow> &window, std::string &dungeon) override;

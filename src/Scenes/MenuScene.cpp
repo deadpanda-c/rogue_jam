@@ -24,6 +24,17 @@ void MenuScene::init()
     _textManager.getText("title")->setCharacterSize(100);
     _textManager.getText("title")->setPosition((sf::Vector2f){400, 100});
     _textManager.getText("title")->setFillColor((sf::Color){211, 211, 211});
+
+    if (!_music.openFromFile(MUSIC_MENU))
+        std::cout << "Error while loading music" << std::endl;
+    _music.setLoop(true);
+
+    if (!_playSoundBuffer.loadFromFile(PLAY_SOUND))
+        std::cout << "Error while loading sound: " << PLAY_SOUND << std::endl;
+
+    _playSound.setBuffer(_playSoundBuffer);
+    std::cout << "playsound status: " << _playSound.getStatus() << std::endl;
+    std::cout << "[*] Menu is init done" << std::endl;
 }
 
 void MenuScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
@@ -36,22 +47,30 @@ void MenuScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
         if (event.type == sf::Event::KeyPressed) {
             if (event.key.code == sf::Keyboard::Space) { // switch from scene Menu to scene Game
                 std::cout << "Space pressed" << std::endl;
-                scene = "game";
+                _playSound.play();
+                scene = "level_map";
             }
         }
         if (event.type == sf::Event::MouseButtonPressed) {
             if (event.mouseButton.button == sf::Mouse::Left) {
                 if (_isHoverPlayBtn) {
                     std::cout << "Play button pressed" << std::endl;
-                    scene = "game";
+                    _playSound.play();
+                    scene = "level_map";
                 }
             }
+        }
+        if (scene == "game") {
+            _music.stop();
         }
     }
 }
 
 void MenuScene::update(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
 {
+    if (!_music.getStatus()) {
+        _music.play();
+    }
     window->clear();
     handleEvent(window, scene);
     _isHoverPlayBtn = _spriteManager.getSprite("default_play_btn")->getGlobalBounds().contains(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y);

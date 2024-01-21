@@ -7,6 +7,14 @@
 
 #define HOME_MAP "../assets/img/home.png"
 
+#define START_BUTTON "../assets/img/start_btn.png"
+#define START_BUTTON_HOVER "../assets/img/start_btn_hover.png"
+
+#define MUSIC_MAP "../assets/musics/intermediary_map_music.ogg"
+#define SOUND_SELECTION "../assets/sounds/ting.wav"
+#define NO_MONEY_SOUND "../assets/sounds/bonhomme.wav"
+#define PAY_SOUND "../assets/sounds/pay.wav"
+
 #define FONT_TEXT  "../assets/fonts/PERRYGOT.TTF"
 #define ARIAL_FONT "../assets/fonts/Arial.ttf"
 
@@ -23,8 +31,17 @@ class HomeScene : public Scene {
         void init();
         void update(std::shared_ptr<sf::RenderWindow> &window, std::string &scene);
         void draw(std::shared_ptr<sf::RenderWindow> &window);
+        void switchDungeon(std::string &scene);
         void handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene);
     private:
+        sf::SoundBuffer _soundBuffer;
+        sf::SoundBuffer _soundMoneyBuffer;
+        sf::SoundBuffer _soundPayBuffer;
+        sf::Sound _sound;
+        sf::Sound _soundMoney;
+        sf::Sound _soundPay;
+        sf::Music _music;
+        bool _isStartBtnHover;
         unsigned int _currentSold;
         SpriteManager _spriteManager;
         TextManager _entranceTextManager;

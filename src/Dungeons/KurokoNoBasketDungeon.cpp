@@ -2,24 +2,24 @@
 ** EPITECH PROJECT, 2024
 ** rogue_jam
 ** File description:
-** BleachDungeon
+** KurokoNoBasketDungeon
 */
 
-#include "Dungeons/BleachDungeon.hpp"
+#include "Dungeons/KurokoNoBasketDungeon.hpp"
 
-BleachDungeon::BleachDungeon()
+KurokoNoBasketDungeon::KurokoNoBasketDungeon()
 {
 }
 
-BleachDungeon::~BleachDungeon()
+KurokoNoBasketDungeon::~KurokoNoBasketDungeon()
 {
 }
 
-void BleachDungeon::init() {
+void KurokoNoBasketDungeon::init() {
 
 }
 
-void BleachDungeon::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
+void KurokoNoBasketDungeon::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
 {
     sf::Event event;
 
@@ -34,13 +34,12 @@ void BleachDungeon::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::
         }
     }
 }
-
-void BleachDungeon::update(std::shared_ptr<sf::RenderWindow> &window, std::string &dungeon)
+void KurokoNoBasketDungeon::update(std::shared_ptr<sf::RenderWindow> &window, std::string &dungeon)
 {
     window->clear();
     handleEvent(window, dungeon);
 }
 
-void BleachDungeon::draw(std::shared_ptr<sf::RenderWindow> &window) {
+void KurokoNoBasketDungeon::draw(std::shared_ptr<sf::RenderWindow> &window) {
 
 }

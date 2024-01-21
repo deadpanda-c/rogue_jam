@@ -2,17 +2,17 @@
 ** EPITECH PROJECT, 2024
 ** rogue_jam
 ** File description:
-** BleachDungeon
+** KurokoNoBasketDungeon
 */
 
 #pragma once
 
 #include "Dungeon.hpp"
 
-class BleachDungeon : public Dungeon {
+class KurokoNoBasketDungeon : public Dungeon {
     public:
-        BleachDungeon();
-        ~BleachDungeon();
+        KurokoNoBasketDungeon();
+        ~KurokoNoBasketDungeon();
 
         void init() override;
         void update(std::shared_ptr<sf::RenderWindow> &window, std::string &dungeon) override;
@@ -21,4 +21,3 @@ class BleachDungeon : public Dungeon {
     protected:
     private:
 };
-

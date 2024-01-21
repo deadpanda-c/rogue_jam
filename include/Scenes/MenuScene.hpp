@@ -8,6 +8,9 @@
 
 #define BACKGROUND_MENU "../assets/img/menu.png"
 
+#define MUSIC_MENU "../assets/musics/menu_song.ogg"
+#define PLAY_SOUND "../assets/sounds/play_sound.wav"
+
 #define TITLE_FONT "../assets/fonts/PERRYGOT.TTF"
 
 class MenuScene : public Scene {
@@ -20,6 +23,9 @@ class MenuScene : public Scene {
         void draw(std::shared_ptr<sf::RenderWindow> &window);
         void handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene);
     private:
+        sf::Music _music;
+        sf::SoundBuffer _playSoundBuffer;
+        sf::Sound _playSound;
         SpriteManager _spriteManager;
         TextManager _textManager;
         bool _isHoverPlayBtn;

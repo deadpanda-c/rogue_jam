@@ -3,6 +3,7 @@
 SpriteManager::SpriteManager()
 {
     // ctor
+    _currentAnimation = "";
 }
 
 SpriteManager::~SpriteManager()
@@ -60,4 +61,25 @@ std::shared_ptr<Sprite> SpriteManager::getSprite(const std::string &name) const
         return nullptr;
     }
     return _sprites.at(name);
+}
+
+void SpriteManager::addAnimation(const std::string &animationName, std::string &spriteName, std::vector<sf::IntRect> &frames, float time)
+{
+    _animations[animationName] = std::make_pair(spriteName, frames);
+    _clocks[animationName] = std::make_pair(sf::Clock(), time);
+}
+
+void SpriteManager::playAnimation(const std::string &animationName, int size)
+{
+    sf::Time time = _clocks[animationName].first.getElapsedTime();
+    if (time.asSeconds() < _clocks[animationName].second) {
+        return;
+    }
+    if (_animations.find(animationName) == _animations.end()) {
+        std::cout << "SpriteManager::playAnimation: Animation " << animationName << " doesn't exist" << std::endl;
+        return;
+    }
+    _currentAnimation = animationName;
+    _sprites[_animations[animationName].first]->setTextureRect(_animations[animationName].second[size]);
+    _clocks[animationName].first.restart();
 }
