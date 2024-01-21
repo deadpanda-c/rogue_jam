@@ -3,6 +3,7 @@
 SpriteManager::SpriteManager()
 {
     // ctor
+    _currentAnimation = "";
 }
 
 SpriteManager::~SpriteManager()
@@ -62,12 +63,17 @@ std::shared_ptr<Sprite> SpriteManager::getSprite(const std::string &name) const
     return _sprites.at(name);
 }
 
-void SpriteManager::addAnimation(const std::string &name, const std::string &spriteName, sf::Vector2f frame, int offset, int nbFrame)
+void SpriteManager::addAnimation(const std::string &animationName, std::string &spriteName, std::vector<sf::IntRect> &frames)
 {
-    // spriteName represents the sprites where we want to add the animation
-    if (_sprites.find(spriteName) == _sprites.end()) {
-        std::cout << "SpriteManager::addAnimation: Sprite " << spriteName << " doesn't exist" << std::endl;
+    _animations[animationName] = std::make_pair(spriteName, frames);
+}
+
+void SpriteManager::playAnimation(const std::string &animationName)
+{
+    if (_animations.find(animationName) == _animations.end()) {
+        std::cout << "SpriteManager::playAnimation: Animation " << animationName << " doesn't exist" << std::endl;
         return;
     }
-
+    _currentAnimation = animationName;
+    _sprites[_animations[animationName].first]->setTextureRect(_animations[animationName].second[0]);
 }

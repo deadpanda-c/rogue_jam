@@ -79,6 +79,16 @@ void Sprite::move(const sf::Vector2f &offset)
     }
 }
 
+void Sprite::setTextureRect(const sf::IntRect &rect)
+{
+    _sprite.setTextureRect(rect);
+}
+
+sf::IntRect Sprite::getTextureRect() const
+{
+    return _sprite.getTextureRect();
+}
+
 sf::Vector2f Sprite::getScale() const
 {
     return (_path.size() == 0) ? _rect.getScale() : _sprite.getScale();
