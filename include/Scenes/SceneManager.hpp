@@ -6,6 +6,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
+#include "Dungeons/DungeonManager.hpp"
 
 class SceneManager {
     public:
@@ -21,4 +22,5 @@ class SceneManager {
     private:
         std::pair<std::shared_ptr<Scene>, std::string> _currentScene;
         std::map<std::string, std::shared_ptr<Scene>> _scenes;
+        DungeonManager _dungeons;
 };

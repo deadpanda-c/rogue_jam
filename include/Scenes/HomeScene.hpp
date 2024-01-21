@@ -27,6 +27,5 @@ class HomeScene : public Scene {
         SpriteManager _spriteManager;
         TextManager _entranceTextManager;
         TextManager _dungeonTextManager;
-        Player _player;
         int _currentIndex;
 };

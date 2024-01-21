@@ -1,8 +1,10 @@
 #include "Scenes/SceneManager.hpp"
+#include "Dungeons/BleachDungeon.hpp"
 
 SceneManager::SceneManager()
 {
-    //ctor
+    std::shared_ptr<BleachDungeon> bleach = std::make_shared<BleachDungeon>();
+    _dungeons.addDungeon("Bleach", bleach);
 }
 
 SceneManager::~SceneManager()
