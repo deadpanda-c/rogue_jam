@@ -399,10 +399,15 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
             if (event.mouseButton.button == sf::Mouse::Left) {
                 if (_spriteManager.getSprite("buyItemOne")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
                     if (_currentSold >= 50) {
-                        _currentSold -= 50;
-                        _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
-                        std::cout << "buy item one" << std::endl;
-                        _soundPay.play();
+                        if (!_dungeonItems[(Dungeon)_currentIndex].first.empty()) {
+                            _currentSold -= 50;
+                            _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
+                            std::cout << "buy item one" << std::endl;
+                            _dungeonItems[(Dungeon)_currentIndex].first.pop();
+                            _soundPay.play();
+                        } else {
+                            _soundMoney.play();
+                        }
                     } else {
                         std::cout << "not enough money" << std::endl;
                         _soundMoney.play();
@@ -411,10 +416,15 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
                     _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
                 } else if (_spriteManager.getSprite("buyItemTwo")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
                     if (_currentSold >= 100) {
-                        _currentSold -= 100;
-                        _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
-                        std::cout << "buy item two" << std::endl;
-                        _soundPay.play();
+                        if (!_dungeonItems[(Dungeon)_currentIndex].second.empty()) {
+                            _currentSold -= 100;
+                            _dungeonTextManager.getText("current_sold")->setString(convertIntToString(_currentSold) + " {E}");
+                            _dungeonItems[(Dungeon)_currentIndex].second.pop();
+                            std::cout << "buy item two" << std::endl;
+                            _soundPay.play();
+                        } else {
+                            _soundMoney.play();
+                        }
                     } else {
                         std::cout << "not enough money" << std::endl;
                         _soundMoney.play();
@@ -510,16 +520,19 @@ void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)
             (_currentIndex == 3) ? "highScore_kuroko-no-basket" :
             "highScore_bleach");
     _spriteManager.draw(window, "shop");
-    _spriteManager.draw(window, "shopCellOne");
-    _spriteManager.draw(window, "shopCellTwo");
+    //_spriteManager.draw(window, "shopCellOne");
+    //_spriteManager.draw(window, "shopCellTwo");
     _spriteManager.draw(window, "buyItemOne");
     _spriteManager.draw(window, "buyItemTwo");
     _spriteManager.draw(window, (_isStartBtnHover) ? "start_hover" : "start");
 
 
     // draw the items of the shop from the stack
-    _dungeonSpriteManager[(Dungeon)_currentIndex]->draw(window, _dungeonItems[(Dungeon)_currentIndex].first.top());
-    _dungeonSpriteManager[(Dungeon)_currentIndex]->draw(window, _dungeonItems[(Dungeon)_currentIndex].second.top());
+    if (!_dungeonItems[(Dungeon)_currentIndex].first.empty()) {
+        _dungeonSpriteManager[(Dungeon)_currentIndex]->draw(window, _dungeonItems[(Dungeon)_currentIndex].first.top());
+    }
+    if (!_dungeonItems[(Dungeon)_currentIndex].second.empty())
+        _dungeonSpriteManager[(Dungeon)_currentIndex]->draw(window, _dungeonItems[(Dungeon)_currentIndex].second.top());
 
     // display the text (labels)
     _entranceTextManager.draw(window, "entrance_onepiece");
