@@ -9,7 +9,7 @@
 
 #include "Dungeon.hpp"
 
-class DragonBallDungeon : public Scene {
+class DragonBallDungeon : public Dungeon {
     public:
         DragonBallDungeon();
         ~DragonBallDungeon();
