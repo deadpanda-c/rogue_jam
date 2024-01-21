@@ -178,6 +178,16 @@ void HomeScene::init()
     _dungeonTextManager.getText("start")->setCharacterSize(30);
     _dungeonTextManager.getText("start")->setPosition((sf::Vector2f){1620, 990});
     _dungeonTextManager.getText("start")->setFillColor(sf::Color::White);
+
+    if (!_music.openFromFile(MUSIC_MAP))
+        std::cout << "Error while loading the music" << std::endl;
+    _music.setVolume(30);
+    _music.setLoop(true);
+
+    if (_soundBuffer.loadFromFile(SOUND_SELECTION))
+        _sound.setBuffer(_soundBuffer);
+    else
+        std::cout << "Error while loading the sound" << std::endl;
 }
 
 void HomeScene::switchDungeon(std::string &scene)
@@ -187,6 +197,7 @@ void HomeScene::switchDungeon(std::string &scene)
             (_currentIndex == 2) ? "dragonBall" :
             (_currentIndex == 3) ? "kurokoNoBasket" :
             "bleach";
+    _music.stop();
 }
 
 void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene)
@@ -197,10 +208,14 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
         if (event.type == sf::Event::Closed)
             window->close();
         if (event.type == sf::Event::KeyPressed) {
-            if (event.key.code == sf::Keyboard::Right)
+            if (event.key.code == sf::Keyboard::Right) {
                 _currentIndex += (_currentIndex < 4) ? 1 : -4;
-            else if (event.key.code == sf::Keyboard::Left)
+                _sound.play();
+            }
+            else if (event.key.code == sf::Keyboard::Left) {
                 _currentIndex -= (_currentIndex > 0) ? 1 : -4;
+                _sound.play();
+            }
 
             // press enter
             if (event.key.code == sf::Keyboard::Return) {
@@ -236,14 +251,19 @@ void HomeScene::handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::stri
             // detect if the mouse is on the entrance of a dungeon
             if (_spriteManager.getSprite("entrance_onepiece")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
                 _currentIndex = 0;
+                _sound.play();
             } else if (_spriteManager.getSprite("entrance_assassination-classroom")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
                 _currentIndex = 1;
+                _sound.play();
             } else if (_spriteManager.getSprite("entrance_dragon-ball")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
                 _currentIndex = 2;
+                _sound.play();
             } else if (_spriteManager.getSprite("entrance_kuroko-no-basket")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
                 _currentIndex = 3;
+                _sound.play();
             } else if (_spriteManager.getSprite("entrance_bleach")->getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y)) {
                 _currentIndex = 4;
+                _sound.play();
             }
         }
     }
@@ -292,6 +312,9 @@ void HomeScene::update(std::shared_ptr<sf::RenderWindow> &window, std::string &s
     }
 
     _isStartBtnHover = (_spriteManager.getSprite("start")->getGlobalBounds().contains(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y)) ? true : false;
+
+    if (_music.getStatus() != sf::SoundSource::Status::Playing)
+        _music.play();
 }
 
 void HomeScene::draw(std::shared_ptr<sf::RenderWindow> &window)

@@ -10,6 +10,9 @@
 #define START_BUTTON "../assets/img/start_btn.png"
 #define START_BUTTON_HOVER "../assets/img/start_btn_hover.png"
 
+#define MUSIC_MAP "../assets/musics/intermediary_map_music.ogg"
+#define SOUND_SELECTION "../assets/sounds/ting.wav"
+
 #define FONT_TEXT  "../assets/fonts/PERRYGOT.TTF"
 #define ARIAL_FONT "../assets/fonts/Arial.ttf"
 
@@ -29,6 +32,9 @@ class HomeScene : public Scene {
         void switchDungeon(std::string &scene);
         void handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene);
     private:
+        sf::SoundBuffer _soundBuffer;
+        sf::Sound _sound;
+        sf::Music _music;
         bool _isStartBtnHover;
         unsigned int _currentSold;
         SpriteManager _spriteManager;
