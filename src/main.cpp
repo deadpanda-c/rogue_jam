@@ -19,7 +19,7 @@ int main(void)
 
     // scene management
     SceneManager sceneManager;
-    std::string currentScene = "menu";
+    std::string currentScene = "dungeon_1";
     sceneManager.addScene("menu", std::make_shared<MenuScene>());
     sceneManager.addScene("level_map", std::make_shared<HomeScene>());
     sceneManager.addScene("dungeon_1", std::make_shared<DungeonTest>());

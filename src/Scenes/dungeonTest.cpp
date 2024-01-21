@@ -14,7 +14,7 @@ void DungeonTest::init() {
 }
 
 void DungeonTest::update(std::shared_ptr<sf::RenderWindow> &window, std::string &scene) {
-    window->clear(sf::Color::Green);
+    window->clear();
     handleEvent(window, scene);
     //call mon update anim avec son offset
 }

@@ -61,3 +61,13 @@ std::shared_ptr<Sprite> SpriteManager::getSprite(const std::string &name) const
     }
     return _sprites.at(name);
 }
+
+void SpriteManager::addAnimation(const std::string &name, const std::string &spriteName, sf::Vector2f frame, int offset, int nbFrame)
+{
+    // spriteName represents the sprites where we want to add the animation
+    if (_sprites.find(spriteName) == _sprites.end()) {
+        std::cout << "SpriteManager::addAnimation: Sprite " << spriteName << " doesn't exist" << std::endl;
+        return;
+    }
+
+}

@@ -18,6 +18,8 @@ class SpriteManager {
         void addSprite(const std::string &name, const std::string &path);
         void removeSprite(const std::string &name);
 
+        void addAnimation(const std::string &name, const std::string &spriteName, sf::Vector2f frame, int offset,  int nbFrame);
+        void runAnimation(const std::string &name);
         void draw(std::shared_ptr<sf::RenderWindow> &window);
         void draw(std::shared_ptr<sf::RenderWindow> &window, const std::string &name);
         size_t getNbSprites() const;
