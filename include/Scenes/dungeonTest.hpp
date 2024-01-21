@@ -14,6 +14,7 @@ public:
     void draw(std::shared_ptr<sf::RenderWindow> &window) override;
     void handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &scene) override;
 private:
+    int test;
     SpriteManager _spriteManager;
     TextManager _textManager;
 };
