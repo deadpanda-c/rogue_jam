@@ -15,8 +15,8 @@ Dungeon::~Dungeon()
 {
 }
 
-void Dungeon::init() {
-
+void Dungeon::init()
+{
 }
 
 void Dungeon::update(std::shared_ptr<sf::RenderWindow> &window, std::string &dungeon) {

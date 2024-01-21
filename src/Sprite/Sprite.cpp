@@ -79,6 +79,15 @@ void Sprite::move(const sf::Vector2f &offset)
     }
 }
 
+void Sprite::setOrigin(const sf::Vector2f &origin)
+{
+    if (_path.size() == 0) {
+        _rect.setOrigin(origin);
+    } else {
+        _sprite.setOrigin(origin);
+    }
+}
+
 void Sprite::setTextureRect(const sf::IntRect &rect)
 {
     _sprite.setTextureRect(rect);
@@ -102,5 +111,10 @@ sf::Vector2f Sprite::getPosition() const
 sf::FloatRect Sprite::getGlobalBounds() const
 {
     return (_path.size() == 0) ? _rect.getGlobalBounds() : _sprite.getGlobalBounds();
+}
+
+sf::Texture Sprite::getTexture() const
+{
+    return _texture;
 }
 

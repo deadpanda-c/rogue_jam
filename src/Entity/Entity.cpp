@@ -1,4 +1,4 @@
-#include "Entity.hpp"
+#include "Entity/Entity.hpp"
 
 Entity::Entity()
 {
@@ -16,20 +16,20 @@ void Entity::setFilename(const std::string &filename)
 
 void Entity::setHealth(int health)
 {
-    _health = (_health + health) > 100 ? 100 : _health + health;
+    _stats[HEALTH] = (_stats[HEALTH] + health) > 100 ? 100 : _stats[HEALTH] + health;
 }
 
 void Entity::setShield(int shield)
 {
-    _shield = (_shield + shield) > 100 ? 100 : _shield + shield;
+    _stats[SHIELD] = (_stats[SHIELD] + shield) > 100 ? 100 : _stats[SHIELD] + shield;
 }
 
 int Entity::getHealth() const
 {
-    return _health;
+    return _stats[HEALTH];
 }
 
 int Entity::getShield() const
 {
-    return _shield;
+    return _stats[SHIELD];
 }

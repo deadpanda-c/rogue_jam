@@ -17,6 +17,7 @@ DragonBallDungeon::~DragonBallDungeon()
 
 void DragonBallDungeon::init()
 {
+    _player.init();
     _isHoverAttack = false;
     _isHoverRun = false;
     _spriteManager.addSprite("card", "");
@@ -76,6 +77,16 @@ void DragonBallDungeon::handleEvent(std::shared_ptr<sf::RenderWindow> &window, s
             _isHoverAttack = (_spriteManager.getSprite("attack_card")->getGlobalBounds().contains(window->mapPixelToCoords(sf::Mouse::getPosition(*window)))) ? true : false;
             _isHoverRun = (_spriteManager.getSprite("run_card")->getGlobalBounds().contains(window->mapPixelToCoords(sf::Mouse::getPosition(*window)))) ? true : false;
         }
+        if (event.type == sf::Event::MouseButtonPressed) {
+            if (event.mouseButton.button == sf::Mouse::Left) {
+                if (_isHoverAttack) {
+                    _player.attack();
+                }
+                if (_isHoverRun) {
+                    scene = "level_map";
+                }
+            }
+        }
     }
 }
 void DragonBallDungeon::update(std::shared_ptr<sf::RenderWindow> &window, std::string &dungeon)
@@ -83,10 +94,13 @@ void DragonBallDungeon::update(std::shared_ptr<sf::RenderWindow> &window, std::s
     window->clear();
     handleEvent(window, dungeon);
 
+    _player.update(window);
 }
 
 void DragonBallDungeon::draw(std::shared_ptr<sf::RenderWindow> &window)
 {
+    _player.draw(window);
+
     _spriteManager.draw(window, "card");
     _spriteManager.draw(window,
             (_isHoverAttack) ? "attack_card_hover" : "attack_card");

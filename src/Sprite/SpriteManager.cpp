@@ -69,17 +69,19 @@ void SpriteManager::addAnimation(const std::string &animationName, std::string &
     _clocks[animationName] = std::make_pair(sf::Clock(), time);
 }
 
-void SpriteManager::playAnimation(const std::string &animationName, int size)
+void SpriteManager::playAnimation(const std::string &animationName, int &size)
 {
     sf::Time time = _clocks[animationName].first.getElapsedTime();
-    if (time.asSeconds() < _clocks[animationName].second) {
-        return;
-    }
     if (_animations.find(animationName) == _animations.end()) {
         std::cout << "SpriteManager::playAnimation: Animation " << animationName << " doesn't exist" << std::endl;
         return;
     }
-    _currentAnimation = animationName;
-    _sprites[_animations[animationName].first]->setTextureRect(_animations[animationName].second[size]);
-    _clocks[animationName].first.restart();
+    if (time.asSeconds() > _clocks[animationName].second) {
+        _clocks[animationName].first.restart();
+        size++;
+        if (size >= _animations[animationName].second.size())
+            size = 0;
+        _sprites[_animations[animationName].first]->setTextureRect(_animations[animationName].second[size]);
+        _clocks[animationName].first.restart();
+    }
 }

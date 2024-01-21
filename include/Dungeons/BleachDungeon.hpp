@@ -21,4 +21,3 @@ class BleachDungeon : public Dungeon {
     protected:
     private:
 };
-

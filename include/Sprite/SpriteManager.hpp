@@ -17,7 +17,7 @@ class SpriteManager {
 
 
         void addAnimation(const std::string &animationName, std::string &spriteName, std::vector<sf::IntRect> &frames, float time);
-        void playAnimation(const std::string &animationName, int size);
+        void playAnimation(const std::string &animationName, int &size);
         void addSprite(const std::string &name, const std::string &path);
         void removeSprite(const std::string &name);
 

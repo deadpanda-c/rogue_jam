@@ -19,9 +19,11 @@
 #include "Scenes/Scene.hpp"
 #include "Sprite/SpriteManager.hpp"
 #include "Text/TextManager.hpp"
+#include "Entity/Player.hpp"
 
 #define CARD_BUTTON "../assets/img/start_btn.png"
 #define CARD_BUTTON_HOVER "../assets/img/start_btn_hover.png"
+
 #define FONT "../assets/fonts/PERRYGOT.TTF"
 
 class Dungeon : public Scene {
@@ -34,6 +36,7 @@ class Dungeon : public Scene {
         void handleEvent(std::shared_ptr<sf::RenderWindow> &window, std::string &dungeon);
         void draw(std::shared_ptr<sf::RenderWindow> &window);
     protected:
+        Player _player;
         bool _isHoverAttack;
         bool _isHoverRun;
         SpriteManager _spriteManager;

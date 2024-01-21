@@ -2,7 +2,7 @@
 #include <stack>
 
 #include "Scene.hpp"
-#include "Player.hpp"
+#include "Entity/Player.hpp"
 
 #include "Sprite/SpriteManager.hpp"
 #include "Text/TextManager.hpp"
